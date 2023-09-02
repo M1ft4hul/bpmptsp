@@ -367,6 +367,9 @@
             }
         });
 
+        // masalah bikin berat ini nih
+
+
         // $(document).ready(function() {
 
         //     $('#prov').on('change', function() {
