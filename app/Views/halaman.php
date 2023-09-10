@@ -11,7 +11,7 @@
                     <h2><?= $halaman['nama_halaman'] ?></h2>
                     <ul>
                         <li>
-                            <a href="<?php echo base_url('/') ?>">Home</a>
+                            <a href="<?php echo base_url('/home') ?>">Home</a>
                         </li>
                         <li>
                             <span><?= $halaman['nama_halaman'] ?></span>
@@ -44,13 +44,13 @@
                                     </li>
                                     <li>
                                         <span><?= $berita['tanggal']; ?></span>
-                                        <a href="#"><?= substr($berita['judul'], 0, 40); ?>...</a>
+                                        <a href="<?= base_url('berita/show/' . $berita['slug']) ?>"><?= substr($berita['judul'], 0, 40); ?>...</a>
                                     </li>
                                 </ul>
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <div class="tags widget-item">
+                    <!-- <div class="tags widget-item">
                         <h3>Tags</h3>
                         <ul>
                             <li>
@@ -75,7 +75,7 @@
                                 <a href="#">#Tips</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

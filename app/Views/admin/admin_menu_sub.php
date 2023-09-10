@@ -52,7 +52,7 @@
                                     <th>ID</th>
                                     <th>Nama Sub Menu</th>
                                     <th>Menu Utama</th>
-                                    <th>URL atau Halaman</th>
+                                    <th>Halaman</th>
                                     <th>Urutan</th>
                                     <th>Aktif</th>
                                     <th>Aksi</th>
@@ -65,7 +65,7 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $item['nama_menu'] ?></td>
                                         <td><?= $item['nama_utama'] ?></td>
-                                        <td><?= $item['link'] ?> <?= $item['nama_halaman'] ?></td>
+                                        <td><?= $item['nama_halaman'] ?></td>
                                         <td><?= $item['urutan'] ?></td>
                                         <td>
                                             <?php if ($item['aktif'] == 0) : ?>
@@ -227,30 +227,16 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if (!empty($item['link'])) : ?>
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Link/URL</label>
-                                <div class="col-lg-7">
-                                    <input type="text" value="<?= (old('link')) ? old('link') : $item['link'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('link')) ? 'is-invalid'  : ''; ?>" name="link" id="validationCustom01" placeholder="Masukkan nama link/URL">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('link', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['link']; ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </div>
+                        <div class="mb-3 row">
+                            <label class="col-lg-3 col-form-label" for="validationCustom01">Halaman</label>
+                            <div class="col-lg-7">
+                                <select name="id_halaman" class="default-select wide form-control" id="validationCustom05">
+                                    <?php foreach ($halaman as $m) : ?>
+                                        <option value="<?= $m['id_halaman'] ?>" <?= ($item['id_halaman'] == $m['id_halaman']) ? 'selected' : ''; ?>><?= $m['nama_halaman'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                        <?php elseif (!empty($item['nama_halaman'])) : ?>
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Halaman</label>
-                                <div class="col-lg-7">
-                                    <select name="id_halaman" class="default-select wide form-control" id="validationCustom05">
-                                        <?php foreach ($halaman as $m) : ?>
-                                            <option value="<?= $m['id_halaman'] ?>" <?= ($item['id_halaman'] == $m['id_halaman']) ? 'selected' : ''; ?>><?= $m['nama_halaman'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        <?php endif; ?>
+                        </div>
                         <div class="mb-3 row">
                             <label class="col-lg-3 col-form-label" for="validationCustom01">Status Menu
                                 <span class="text-danger">*</span>
@@ -287,7 +273,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus menu ini <b> <?= $item['nama_menu']; ?> - <?= $item['nama_utama']?></b> ?</p>
+                    <p>Apakah Anda yakin ingin menghapus menu ini <b> <?= $item['nama_menu']; ?> - <?= $item['nama_utama'] ?></b> ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

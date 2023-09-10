@@ -16,8 +16,8 @@
                                         <img src="<?php echo base_url() ?>assets/images/tab/1.jpg" alt="">
                                     </div>
                                     <div class="header-info">
-                                        <h6>Thomas Fleming</h6>
-                                        <p>info@gmail.com</p>
+                                        <h6>Administasi</h6>
+                                        <p>admin@gmail.com</p>
                                     </div>
 
                                 </div>

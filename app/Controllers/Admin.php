@@ -2,16 +2,19 @@
 
 namespace App\Controllers;
 
+use TCPDF;
+
 use App\Models\CategoryModel;
 use App\Models\GalleryModel;
 use App\Models\BeritaModel;
 use App\Models\AduanModel;
-
+use App\Models\KuesionerModel;
 
 class Admin extends BaseController
 {
     public function __construct()
     {
+        $this->kuesionerModel = new KuesionerModel();
         $this->aduanModel = new AduanModel();
         $this->beritaModel = new BeritaModel();
         $this->categoryModel = new CategoryModel();
@@ -616,5 +619,69 @@ class Admin extends BaseController
         session()->setFlashdata('pesan', 'Berita berhasil dihapus.');
 
         return redirect()->to('/admin/berita');
+    }
+
+    public function kuesioner()
+    {
+        $kuesioner = $this->kuesionerModel->findAll();
+        $data = [
+            'kuesioner' => $kuesioner,
+        ];
+        return view('admin/kuesioner', $data);
+    }
+
+    public function pdf_kuesioner($id_kuesioner)
+    {
+        $kuesioner = $this->kuesionerModel->find($id_kuesioner);
+        $jam_survei = $kuesioner['jam_survei'];
+        $jenis_kelamin = $kuesioner['jk'];
+        $pendidikan = $kuesioner['pendidikan'];
+        $pekerjaan = $kuesioner['pekerjaan'];
+        $soal_pertama = $kuesioner['p1'];
+        $soal_kedua = $kuesioner['p2'];
+        $soal_ketiga = $kuesioner['p3'];
+        $soal_keempat = $kuesioner['p4'];
+        $soal_kelima = $kuesioner['p5'];
+        $soal_keenam = $kuesioner['p6'];
+        $soal_ketujuh = $kuesioner['p7'];
+        $soal_kedelapan = $kuesioner['p8'];
+        $soal_kesembilan = $kuesioner['p9'];
+        $data = [
+            'jam_survei' => $jam_survei,
+            'jenis_kelamin' => $jenis_kelamin,
+            'pendidikan' => $pendidikan,
+            'pekerjaan' => $pekerjaan,
+            'kuesioner' => $kuesioner,
+            'soal_pertama' => $soal_pertama,
+            'soal_kedua' => $soal_kedua,
+            'soal_ketiga' => $soal_ketiga,
+            'soal_keempat' => $soal_keempat,
+            'soal_kelima' => $soal_kelima,
+            'soal_keenam' => $soal_keenam,
+            'soal_ketujuh' => $soal_ketujuh,
+            'soal_kedelapan' => $soal_kedelapan,
+            'soal_kesembilan' => $soal_kesembilan,
+        ];
+        $html = view('admin/pdf_kuesioner', $data);
+
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('DPMPTSP');
+        $pdf->SetTitle('Kuesioner');
+        $pdf->SetSubject('Kuesioner');
+
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        $pdf->addPage();
+
+        // output the HTML content
+        $pdf->writeHTML($html, true, false, true, false, '');
+
+        $this->response->setContentType('application/pdf');
+        //Close and output PDF document
+        $pdf->Output('kuesioner.pdf', 'I');
     }
 }

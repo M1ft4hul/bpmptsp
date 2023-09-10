@@ -155,7 +155,7 @@ class Home extends BaseController
             $this->aduanModel->insert($data);
 
             session()->setFlashdata('pesan', 'Aduan anda sudah Terkirim.');
-            return redirect()->to(base_url('/'));
+            return redirect()->to(base_url('/home'));
         } else {
             $validation = \Config\Services::validation();
             return redirect()->to(base_url('/aduan'))->withInput()->with('errors', $validation->getErrors());
@@ -186,6 +186,11 @@ class Home extends BaseController
     public function profil_pejabat()
     {
         return view('profil_pejabat');
+    }
+
+    public function peta_rencana()
+    {
+        return view('peta_rencana');
     }
 
     public function kontak()

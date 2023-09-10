@@ -11,7 +11,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Portal');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -29,7 +29,17 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+
+// portal
+$routes->get('/', 'Portal::index');
+$routes->get('/kuesioner', 'Portal::kuesioner');
+$routes->post('/add', 'Portal::add_kuesioner');
+$routes->get('/progres_add_wa/(:num)', 'Portal::halaman_baru/$1');
+$routes->post('/proses', 'Portal::proses_nomor_wa');
+$routes->get('/progres_finish', 'Portal::halaman_terakhir');
+
+
+$routes->get('/home', 'Home::index');
 $routes->get('/berita/show/(:any)', 'Home::show_berita/$1'); //untuk detail berita
 $routes->get('/halaman/(:any)', 'MenuController::show_halaman/$1'); //untuk detail berita
 
@@ -38,6 +48,7 @@ $routes->get('/profil_visimisi', 'Home::profil_visimisi');
 $routes->get('/profil_organisasi', 'Home::profil_organisasi');
 $routes->get('/profil_sambutan', 'Home::profil_sambutan');
 $routes->get('/profil_pejabat', 'Home::profil_pejabat');
+$routes->get('/peta', 'Home::peta_rencana');
 $routes->get('/kontak', 'Home::kontak');
 $routes->get('/perizinan', 'Home::perizinan');
 $routes->get('/berita', 'Home::berita');
@@ -87,6 +98,10 @@ $routes->get('/admin/aduan_edit/(:any)', 'Admin::aduan_edit/$1');
 $routes->post('/admin/aduan_delete/(:any)', 'Admin::aduan_delete/$1');
 $routes->post('/aduanUpdate/(:any)', 'Admin::aduan_update/$1');
 $routes->post('/admin/aduan/store', 'Admin::aduan_store');
+
+// kuesioner
+$routes->get('/admin/kuesioner', 'Admin::kuesioner');
+$routes->get('/admin/pdf_kuesioner/(:any)', 'Admin::pdf_kuesioner/$1');
 
 // berita
 $routes->get('/admin/berita', 'Admin::berita');

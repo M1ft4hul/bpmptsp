@@ -19,7 +19,7 @@
                         <img src="<?php echo base_url() ?>assetsa/img/sass/banner-shape4.png" alt="Shape">
                         Selamat Datang di Website
                     </span>
-                    <h1>DPM-PTSP NAKERTRANS</h1>
+                    <h1>DPM-PTSP</h1>
                     <p>DPM-PTSP NAKERTRANS Kabupaten Konawe Kepulauan merupakan unsur <br>penunjang tugas tertentu Pemerintah Kabupaten Konawe Kepulauan, yang <br>dipimpin oleh seorang Kepala Dinas berada dibawah dan bertanggungjawab <br>kepada Bupati melalui Sekretaris Daerah</p>
                     <div class="banner-btn">
                         <a href="#" class="cmn-btn">

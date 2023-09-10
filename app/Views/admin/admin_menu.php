@@ -51,7 +51,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Menu</th>
-                                    <th>URL atau Halaman</th>
+                                    <th>Halaman</th>
                                     <th>Urutan</th>
                                     <th>Aktif</th>
                                     <th>Aksi</th>
@@ -63,7 +63,7 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $item['nama_menu'] ?></td>
-                                        <td><?= $item['link'] ?> <?= $item['nama_halaman'] ?></td>
+                                        <td><?= $item['nama_halaman'] ?></td>
                                         <td><?= $item['urutan'] ?></td>
                                         <td>
                                             <?php if ($item['aktif'] == 0) : ?>

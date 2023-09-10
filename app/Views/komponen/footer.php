@@ -63,12 +63,16 @@
                         <h3>Alamat Kantor</h3>
                         <ul>
                             <li>
-                                <span>Alamat:</span>
-                                Jl. Poros Langara-Lampeapi Km.3
+                                <span>Alamat: </span>
+                                Kompleks perkantoran jalan poros langara - Lampeapi KM 3
+                            </li>
+                            <li>
+                                <span>Kode Pos:</span>
+                                93391
                             </li>
                             <li>
                                 <span>Email:</span>
-                                <a href="mailto:dpmptspkonkep@gmail.com">dpmptspkonkep@gmail.com</a>
+                                <a href="mailto:dpmptsp@konkepkab.go.id">dpmptsp@konkepkab.go.id</a>
                             </li>
                             <li>
                                 <span>Phone:</span>

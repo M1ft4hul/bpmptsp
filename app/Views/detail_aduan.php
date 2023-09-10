@@ -12,7 +12,7 @@
                     <h2>Aduan Masyarakat</h2>
                     <ul>
                         <li>
-                            <a href="<?php echo base_url('/') ?>">Home</a>
+                            <a href="<?php echo base_url('/home') ?>">Home</a>
                         </li>
                         <li>
                             <span>Aduan Masyarakat</span>
