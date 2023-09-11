@@ -71,37 +71,33 @@
                                     <?php session()->getFlashdata('errors');
 
                                     if (session()->getFlashdata('pesan')) {
-                                        echo '<div id="alert" class="alert alert-success alert-dismissible fade show">
-                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2">
-                                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
-                                        </svg>
-                                        <strong>Akun anda sudah terdaftar! </strong>';
-
+                                        echo '<div class="alert alert-danger mb-4" role="alert"> 
+                                                <strong>GAGAL!</strong> ';
                                         echo session()->getFlashdata('pesan');
                                         echo '</div>';
                                     }
 
                                     ?>
                                     <!-- alert -->
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Masukkan email">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <input type="password" class="form-control" placeholder="Masukkan password">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <button type="submit" class="btn">Login</button>
+                                    <?= form_open('Auth/cek_login'); ?>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input type="email" name="email" class="form-control" placeholder="Masukkan email">
                                             </div>
                                         </div>
-                                    </form>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input type="password" name="password" class="form-control" placeholder="Masukkan password">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="submit" class="btn">Login</button>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
                                     <div class="bottom">
-                                        <p>Belum Punya akun? <a href="<?php echo base_url('/register') ?>">Register</a></p>
+                                        <!-- <p>Belum Punya akun? <a href="</?php echo base_url('/register') ?>">Register</a></p> -->
                                     </div>
                                 </div>
                             </div>

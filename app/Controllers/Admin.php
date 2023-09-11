@@ -9,11 +9,13 @@ use App\Models\GalleryModel;
 use App\Models\BeritaModel;
 use App\Models\AduanModel;
 use App\Models\KuesionerModel;
+use App\Models\UserModel;
 
 class Admin extends BaseController
 {
     public function __construct()
     {
+        $this->userModel = new UserModel();
         $this->kuesionerModel = new KuesionerModel();
         $this->aduanModel = new AduanModel();
         $this->beritaModel = new BeritaModel();
@@ -683,5 +685,118 @@ class Admin extends BaseController
         $this->response->setContentType('application/pdf');
         //Close and output PDF document
         $pdf->Output('kuesioner.pdf', 'I');
+    }
+
+    public function data_login()
+    {
+        $login = $this->userModel->findAll();
+        $validation = \Config\Services::validation();
+        $data = [
+            'validation' => $validation,
+            'login' => $login,
+        ];
+
+        return view('/admin/data_login', $data);
+    }
+
+    public function data_login_create()
+    {
+        $login = $this->userModel->findAll();
+        $validation = \Config\Services::validation();
+        $data = [
+            'validation' => $validation,
+            'login' => $login,
+        ];
+        return view('admin/data_login_create', $data);
+    }
+
+    public function data_login_store()
+    {
+        if ($this->validate([
+            'username' => [
+                'rules' => 'required|is_unique[user.username]',
+                'errors' => [
+                    'required' => 'Username Wajib Diisi',
+                    'is_unique' => 'Username sudah ada, masukkan username yang berbeda.',
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|is_unique[user.email]',
+                'errors' => [
+                    'required' => 'Email Wajib Diisi',
+                    'is_unique' => 'Email sudah ada, masukkan email yang berbeda.',
+                ]
+            ],
+        ])) {
+            $data = [
+                'username' => $this->request->getPost('username'),
+                'email' => $this->request->getPost('email'),
+                'password' => $this->request->getPost('password'),
+            ];
+            $this->userModel->insert($data);
+            session()->setFlashdata('pesan', 'Data Login berhasil ditambah');
+            return redirect()->to(base_url('/admin/menu/login'));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/admin/data_login_create'))->withInput()->with('errors', $validation->getErrors());
+        }
+    }
+
+
+    public function data_login_edit($id_user)
+    {
+        $login = $this->userModel->find($id_user);
+        $validation = \Config\Services::validation();
+        $data = [
+            'validation' => $validation,
+            'login' => $login,
+        ];
+        return view('admin/data_login_edit', $data);
+    }
+
+    public function data_login_update($id_user)
+    {
+        $rules = [
+            'username' => [
+                'rules' => 'required|is_unique[user.username]',
+                'errors' => [
+                    'required' => 'Username Wajib Diisi',
+                    'is_unique' => 'Username sudah ada, masukkan username yang berbeda.',
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|is_unique[user.email]',
+                'errors' => [
+                    'required' => 'Email Wajib Diisi',
+                    'is_unique' => 'Email sudah ada, masukkan email yang berbeda.',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'password' => $this->request->getPost('password')
+        ];
+
+        $this->userModel->update($id_user, $data);
+
+        return redirect()->to('/admin/menu/login')->with('pesan', 'Data Login berhasil diupdate');
+    }
+
+    public function data_login_delete($id_user)
+    {
+        $this->userModel->delete($id_user);
+        session()->setFlashdata('pesan', 'Data Login berhasil dihapus');
+        return redirect()->to('/admin/menu/login');
+    }
+
+    function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login');
     }
 }

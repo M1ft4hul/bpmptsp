@@ -101,8 +101,8 @@
 
                     <!-- tombol -->
                     <div class="side-nav">
-                        <a class="left-btn" href="">
-                            Registrasi
+                        <a class="left-btn" href="<?php echo base_url('/login')?>">
+                            Login
                             <i class='bx bx-log-in'></i>
                         </a>
                         <!-- </?php echo base_url('/register') ?> -->

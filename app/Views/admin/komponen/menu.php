@@ -83,6 +83,7 @@
                     <li><a href="<?php echo base_url('/admin/menu') ?>">Pengaturan Menu</a></li>
                     <li><a href="<?php echo base_url('/admin/menu/sub') ?>">Pengaturan Sub Menu</a></li>
                     <li><a href="<?php echo base_url('/admin/menu/halaman') ?>">Pengaturan Halaman</a></li>
+                    <li><a href="<?php echo base_url('/admin/menu/login') ?>">Data Login</a></li>
                 </ul>
             </li>
             <!-- <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">

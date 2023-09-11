@@ -61,11 +61,7 @@ $routes->post('/home/aduan/store', 'Home::aduan_simpan');
 
 // auth
 $routes->get('/login', 'Auth::index');
-$routes->get('/register', 'Auth::regis');
-$routes->post('/register/add', 'Auth::add_regis');
-$routes->get('/kota', 'Auth::kota');
-$routes->get('/kec', 'Auth::kec');
-$routes->get('/desa', 'Auth::desa');
+$routes->post('Auth/cek_login', 'Auth::cek_login');
 
 // dashboard admin
 $routes->get('/admin', 'Admin::index');
@@ -138,6 +134,17 @@ $routes->post('/admin/halaman_delete/(:any)', 'MenuController::halaman_delete/$1
 $routes->post('/halamanUpdate/(:any)', 'MenuController::halaman_update/$1');
 $routes->post('/admin/halaman/save', 'MenuController::halaman_store');
 // end
+
+// data login
+$routes->get('/admin/menu/login', 'Admin::data_login');
+$routes->get('/admin/data_login_create', 'Admin::data_login_create');
+$routes->get('/admin/data_login_edit/(:any)', 'Admin::data_login_edit/$1');
+
+$routes->post('/dataloginUpdate/(:any)', 'Admin::data_login_update/$1');
+$routes->post('/admin/data_login/store', 'Admin::data_login_store');
+$routes->post('/admin/data_login_delete/(:any)', 'Admin::data_login_delete/$1');
+
+$routes->get('/logout', 'Admin::logout');
 
 
 /*
