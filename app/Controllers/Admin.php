@@ -8,6 +8,7 @@ use App\Models\CategoryModel;
 use App\Models\GalleryModel;
 use App\Models\BeritaModel;
 use App\Models\AduanModel;
+use App\Models\BerkasModel;
 use App\Models\KuesionerModel;
 use App\Models\UserModel;
 
@@ -15,6 +16,7 @@ class Admin extends BaseController
 {
     public function __construct()
     {
+        $this->berkasModel = new BerkasModel();
         $this->userModel = new UserModel();
         $this->kuesionerModel = new KuesionerModel();
         $this->aduanModel = new AduanModel();
@@ -770,5 +772,60 @@ class Admin extends BaseController
     {
         session()->destroy();
         return redirect()->to('/login');
+    }
+
+    public function data_sop()
+    {
+        $berkas = $this->berkasModel->findAll();
+        $data = [
+            'berkas' => $berkas,
+        ];
+        return view('admin/sop', $data);
+    }
+
+    public function data_sop_create()
+    {
+        $berkas = $this->berkasModel->findAll();
+        $data = [
+            'berkas' => $berkas,
+        ];
+        return view('admin/sop_create', $data);
+    }
+
+    public function data_sop_store()
+    {
+        if ($this->validate([
+            'nama_file' => [
+                'rules' => 'uploaded[nama_file]|ext_in[nama_file,pdf,doc,docx]',
+                'errors' => [
+                    'uploaded' => 'Berkas wajib diunggah',
+                    'ext_in' => 'Berkas harus berupa PDF',
+                ],
+            ],
+        ])) {
+            $nama_file = $this->request->getFile('nama_file');
+
+            if ($nama_file->isValid() && $nama_file->getClientMIMEType() == 'application/pdf') {
+                $newName = $nama_file->getName();
+                $uploadPath = ROOTPATH . 'public/sop';
+
+                if ($nama_file->move($uploadPath, $newName)) {
+                    $data = [
+                        'nama_file' => $newName,
+                    ];
+                    $this->berkasModel->insert($data);
+
+                    session()->setFlashdata('pesan', 'Berkas berhasil diunggah');
+                    return redirect()->to(base_url('/admin/data_sop'));
+                } else {
+                    session()->setFlashdata('errors', ['nama_file' => 'Gagal menyimpan berkas di folder sop']);
+                }
+            } else {
+                session()->setFlashdata('errors', ['nama_file' => 'Berkas harus berupa PDF']);
+            }
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/admin/data_sop_create'))->withInput()->with('errors', $validation->getErrors());
+        }
     }
 }

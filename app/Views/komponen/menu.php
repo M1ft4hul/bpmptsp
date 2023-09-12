@@ -62,7 +62,10 @@
                             <a href="<?php echo base_url('/peta') ?>" class="nav-link dropdown-toggle">Peta Rencana</a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('/web/kuesioner') ?>" class="nav-link dropdown-toggle">Kuesioner SKM</a>
+                            <a href="<?php echo base_url('/web/kuesioner') ?>" class="nav-link dropdown-toggle">SKM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('/web/sop') ?>" class="nav-link dropdown-toggle">SOP</a>
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo base_url('/kontak') ?>" class="nav-link dropdown-toggle">Kontak</a>
@@ -104,7 +107,7 @@
 
                     <!-- tombol -->
                     <div class="side-nav">
-                        <a class="left-btn" href="<?php echo base_url('/login')?>">
+                        <a class="left-btn" href="<?php echo base_url('/login') ?>">
                             Login
                             <i class='bx bx-log-in'></i>
                         </a>

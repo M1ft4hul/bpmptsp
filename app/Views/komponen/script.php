@@ -26,6 +26,34 @@
 <script src="<?php echo base_url() ?>/sweetalert/sweetalert2.all.min.js"></script>
 <script src="<?php echo base_url() ?>/sweetalert/mysweet.js"></script>
 
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable(
+
+            {
+
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 5
+            }
+        );
+    });
+
+
+    function checkAll(bx) {
+        var cbs = document.getElementsByTagName('input');
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].type == 'checkbox') {
+                cbs[i].checked = bx.checked;
+            }
+        }
+    }
+</script>
 </body>
 
 </html>

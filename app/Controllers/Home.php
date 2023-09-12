@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AduanModel;
 use App\Models\BeritaModel;
+use App\Models\BerkasModel;
 use App\Models\CategoryModel;
 use App\Models\GalleryModel;
 use App\Models\MenuModel;
@@ -12,6 +13,7 @@ class Home extends BaseController
 {
     public function __construct()
     {
+        $this->berkasModel = new BerkasModel();
         $this->galleryModel = new GalleryModel();
         $this->categoryModel = new CategoryModel();
         $this->beritaModel = new BeritaModel();
@@ -218,5 +220,15 @@ class Home extends BaseController
     public function kuesioner()
     {
         return view('kuesioner');
+    }
+
+
+    public function sop()
+    {
+        $berkas = $this->berkasModel->findAll();
+        $data = [
+            'berkas' => $berkas,
+        ];
+        return view('sop', $data);
     }
 }

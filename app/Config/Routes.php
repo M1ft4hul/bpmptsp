@@ -50,6 +50,7 @@ $routes->get('/profil_sambutan', 'Home::profil_sambutan');
 $routes->get('/profil_pejabat', 'Home::profil_pejabat');
 $routes->get('/peta', 'Home::peta_rencana');
 $routes->get('/web/kuesioner', 'Home::kuesioner');
+$routes->get('/web/sop', 'Home::sop');
 $routes->get('/kontak', 'Home::kontak');
 $routes->get('/perizinan', 'Home::perizinan');
 $routes->get('/berita', 'Home::berita');
@@ -146,6 +147,13 @@ $routes->post('/admin/data_login/store', 'Admin::data_login_store');
 $routes->post('/admin/data_login_delete/(:any)', 'Admin::data_login_delete/$1');
 
 $routes->get('/logout', 'Admin::logout');
+
+// data SOP
+$routes->get('/admin/data_sop', 'Admin::data_sop');
+$routes->get('/admin/data_sop_create', 'Admin::data_sop_create');
+
+$routes->post('/admin/data_sop/store', 'Admin::data_sop_store');
+
 
 
 /*

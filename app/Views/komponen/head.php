@@ -43,5 +43,24 @@
             background-color: gray;
             margin-bottom: 30px;
         }
+
+        table {
+            width: 100%;
+        }
+
+        #example_filter {
+            float: right;
+        }
+
+        #example_paginate {
+            float: right;
+        }
+
+        label {
+            display: inline-flex;
+            margin-bottom: .5rem;
+            margin-top: .5rem;
+
+        }
     </style>
 </head>
