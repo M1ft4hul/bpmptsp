@@ -81,36 +81,10 @@ class Home extends BaseController
     public function aduan_simpan()
     {
         if ($this->validate([
-            'image' => [
-                'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
-                'errors' => [
-                    'uploaded' => 'Gambar wajib diunggah',
-                    'max_size' => 'Ukuran gambar maksimum adalah 1MB',
-                    'is_image' => 'File harus berupa gambar'
-                ]
-            ],
-            'tanggal' => [
+            'subjek' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'tanggal wajib diisi'
-                ]
-            ],
-            'telp' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nomor Hp/Wa wajib diisi'
-                ]
-            ],
-            'email' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Email wajib diisi'
-                ]
-            ],
-            'nama_pengadu' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Pengadu wajib diisi'
+                    'required' => 'subjek wajib diisi'
                 ]
             ],
             'isian' => [
@@ -119,27 +93,39 @@ class Home extends BaseController
                     'required' => 'isian wajib diisi'
                 ]
             ],
-            'alamat_lengkap' => [
+            'tanggal' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Alamat Lengkap wajib diisi'
+                    'required' => 'tanggal wajib diisi'
                 ]
             ],
-            'subjek' => [
+            'lokasi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'subjek wajib diisi'
+                    'required' => 'lokasi wajib diisi'
+                ]
+            ],
+            'kategori' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'kategori wajib diisi'
+                ]
+            ],
+            'image' => [
+                'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
+                'errors' => [
+                    'uploaded' => 'Gambar wajib diunggah',
+                    'max_size' => 'Ukuran gambar maksimum adalah 1MB',
+                    'is_image' => 'File harus berupa gambar'
                 ]
             ],
         ])) {
             $data = [
-                'nama_pengadu' => $this->request->getPost('nama_pengadu'),
                 'subjek' => $this->request->getPost('subjek'),
-                'email' => $this->request->getPost('email'),
-                'telp' => $this->request->getPost('telp'),
-                'tanggal' => $this->request->getPost('tanggal'),
                 'isian' => $this->request->getPost('isian'),
-                'alamat_lengkap' => $this->request->getPost('alamat_lengkap'),
+                'tanggal' => $this->request->getPost('tanggal'),
+                'lokasi' => $this->request->getPost('lokasi'),
+                'kategori' => $this->request->getPost('kategori'),
                 'slug' => url_title($this->request->getPost('subjek'), '-', true)
             ];
 

@@ -41,8 +41,8 @@
                         <ul>
                             <li>
                                 <i class='bx bx-user'></i>
-                                <h3>Kategori:</h3>
-                                <span><?= $aduan['kategori'] ?></span>
+                                <h3>Pengirim:</h3>
+                                <span><?= $aduan['nama_pengadu'] ?></span>
                             </li>
                             <li>
                                 <i class='bx bx-calendar'></i>
@@ -50,9 +50,14 @@
                                 <span><?= date('d F, Y', strtotime($aduan['tanggal'])); ?></span>
                             </li>
                             <li>
+                                <i class='bx bx-desktop'></i>
+                                <h3>Email:</h3>
+                                <span><?= $aduan['email'] ?></span>
+                            </li>
+                            <li>
                                 <i class='bx bx-current-location'></i>
                                 <h3>Lokasi:</h3>
-                                <span><?= $aduan['lokasi'] ?></span>
+                                <span><?= $aduan['alamat_lengkap'] ?></span>
                             </li>
                         </ul>
                     </div>

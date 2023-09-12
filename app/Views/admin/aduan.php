@@ -49,9 +49,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pengadu</th>
-                                    <th>Email</th>
-                                    <th>Telepon</th>
+                                    <th>Kategori</th>
+                                    <th>Lokasi</th>
                                     <th>Subjek</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -62,9 +61,8 @@
                                 foreach ($aduan as $item) : ?>
                                     <tr>
                                         <td><a href="javascript:void(0)"><?= $no++; ?></a></td>
-                                        <td><span><?= $item['nama_pengadu'] ?></span></td>
-                                        <td><span><?= $item['email'] ?></span></td>
-                                        <td><span><?= $item['telp'] ?></span></td>
+                                        <td><span><?= $item['kategori'] ?></span></td>
+                                        <td><span><?= $item['lokasi'] ?></span></td>
                                         <td><span><?= substr($item['subjek'], 0, 30); ?>...</span></td>
                                         <td>
                                             <a class="btn btn-warning" href="<?= base_url('/admin/aduan_edit/' . $item['id']) ?>">Edit</a>
@@ -93,7 +91,7 @@ foreach ($aduan as $item) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus Aduan ini <b> <?= $item['subjek']; ?></b> ?</p>
+                    <p>Apakah Anda yakin ingin menghapus Aduan ini <b> <?= $item['kategori']; ?></b> ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
