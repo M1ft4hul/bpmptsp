@@ -228,4 +228,9 @@ class Home extends BaseController
         ];
         return view('galeri', $data);
     }
+
+    public function kuesioner()
+    {
+        return view('kuesioner');
+    }
 }

@@ -29,7 +29,19 @@
     <!-- Theme Dark CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assetsa/css/theme-dark.css">
 
-    <title>DPM-PTSP NAKERTRANS Kabupaten Konawe Kepulauan</title>
+    <title>DPM-PTSP Kabupaten Konawe Kepulauan</title>
 
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>assetsa/img/log.png">
+
+    <style>
+        .garis {
+            margin-top: 40px;
+            width: 100%;
+            text-align: center;
+            margin-left: 0;
+            height: 8px;
+            background-color: gray;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>

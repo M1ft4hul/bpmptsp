@@ -49,6 +49,7 @@ $routes->get('/profil_organisasi', 'Home::profil_organisasi');
 $routes->get('/profil_sambutan', 'Home::profil_sambutan');
 $routes->get('/profil_pejabat', 'Home::profil_pejabat');
 $routes->get('/peta', 'Home::peta_rencana');
+$routes->get('/web/kuesioner', 'Home::kuesioner');
 $routes->get('/kontak', 'Home::kontak');
 $routes->get('/perizinan', 'Home::perizinan');
 $routes->get('/berita', 'Home::berita');

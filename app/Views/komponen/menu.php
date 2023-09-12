@@ -62,6 +62,9 @@
                             <a href="<?php echo base_url('/peta') ?>" class="nav-link dropdown-toggle">Peta Rencana</a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?php echo base_url('/web/kuesioner') ?>" class="nav-link dropdown-toggle">Kuesioner SKM</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?php echo base_url('/kontak') ?>" class="nav-link dropdown-toggle">Kontak</a>
                         </li>
                         <?php
