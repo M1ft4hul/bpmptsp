@@ -609,7 +609,6 @@ class Admin extends BaseController
     public function pdf_kuesioner($id_kuesioner)
     {
         $kuesioner = $this->kuesionerModel->find($id_kuesioner);
-        $jam_survei = $kuesioner['jam_survei'];
         $jenis_kelamin = $kuesioner['jk'];
         $pendidikan = $kuesioner['pendidikan'];
         $pekerjaan = $kuesioner['pekerjaan'];
@@ -623,7 +622,6 @@ class Admin extends BaseController
         $soal_kedelapan = $kuesioner['p8'];
         $soal_kesembilan = $kuesioner['p9'];
         $data = [
-            'jam_survei' => $jam_survei,
             'jenis_kelamin' => $jenis_kelamin,
             'pendidikan' => $pendidikan,
             'pekerjaan' => $pekerjaan,

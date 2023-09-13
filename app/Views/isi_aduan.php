@@ -173,12 +173,7 @@
                 <!-- upload lampiran -->
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <input type="file" name="image" id="formFile" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('image')) ? 'is-invalid'  : ''; ?>" accept="image/*">
-                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('image', session()->getFlashdata('errors'))) : ?>
-                            <p class="text-danger">
-                                <?= session()->getFlashdata('errors')['image']; ?>
-                            </p>
-                        <?php endif; ?>
+                        <input type="file" name="image" id="formFile" class="form-control" accept="image/*">
                     </div>
                 </div>
                 <!-- upload lampiran -->

@@ -63,4 +63,7 @@
 
         }
     </style>
+
+    <link rel="stylesheet" href="<?php echo base_url() ?>assetsa/css/bootstrap.min1.css">
+
 </head>

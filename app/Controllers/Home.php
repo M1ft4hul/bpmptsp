@@ -7,12 +7,14 @@ use App\Models\BeritaModel;
 use App\Models\BerkasModel;
 use App\Models\CategoryModel;
 use App\Models\GalleryModel;
+use App\Models\KuesionerModel;
 use App\Models\MenuModel;
 
 class Home extends BaseController
 {
     public function __construct()
     {
+        $this->kuesionerModel = new KuesionerModel();
         $this->berkasModel = new BerkasModel();
         $this->galleryModel = new GalleryModel();
         $this->categoryModel = new CategoryModel();
@@ -111,14 +113,6 @@ class Home extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'kategori wajib diisi'
-                ]
-            ],
-            'image' => [
-                'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
-                'errors' => [
-                    'uploaded' => 'Gambar wajib diunggah',
-                    'max_size' => 'Ukuran gambar maksimum adalah 1MB',
-                    'is_image' => 'File harus berupa gambar'
                 ]
             ],
         ])) {
@@ -220,6 +214,76 @@ class Home extends BaseController
     public function kuesioner()
     {
         return view('kuesioner');
+    }
+
+    public function add_kuesioner()
+    {
+        if ($this->validate([
+            'pendidikan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'pendidikan harus di isi'
+                ]
+            ],
+        ])) {
+            $data = [
+                // 'tgl_survei' => $this->request->getPost('tgl_survei'),
+                // 'jam_survei' => $this->request->getPost('jam_survei'),
+                'jk' => $this->request->getPost('jk'),
+                'pendidikan' => $this->request->getPost('pendidikan'),
+                'pekerjaan' => $this->request->getPost('pekerjaan'),
+                'jenis_layanan' => $this->request->getPost('jenis_layanan'),
+                'p1' => $this->request->getPost('p1'),
+                'p2' => $this->request->getPost('p2'),
+                'p3' => $this->request->getPost('p3'),
+                'p4' => $this->request->getPost('p4'),
+                'p5' => $this->request->getPost('p5'),
+                'p6' => $this->request->getPost('p6'),
+                'p7' => $this->request->getPost('p7'),
+                'p8' => $this->request->getPost('p8'),
+                'p9' => $this->request->getPost('p9'),
+                'kritik_saran' => $this->request->getPost('kritik_saran'),
+                // 'slug' => url_title($this->request->getPost('jenis_layanan'), '-', true),
+            ];
+            $this->kuesionerModel->insert($data);
+            $id_kuesioner = $this->kuesionerModel->insertID();
+            session()->setFlashdata('pesanku', 'Selesai!, Silahkan Isi Nama dan Nomor HP/WhatsApp');
+            return redirect()->to(base_url('/progres_add_kuesioner/' . $id_kuesioner));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/web/kuesioner'))->withInput()->with('errors', $validation->getErrors());
+        }
+    }
+
+    public function halaman_baru($id_kuesioner)
+    {
+        $kuesioner = $this->kuesionerModel->find($id_kuesioner);
+        $data = [
+            'kuesioner' => $kuesioner
+        ];
+        return view('kuesioner_halaman', $data);
+    }
+
+    public function proses_nomor_wa()
+    {
+        $id_kuesioner = $this->request->getPost('id_kuesioner');
+        if ($this->validate([
+            'nama' => 'required',
+            'wa' => 'required',
+        ])) {
+            $data = [
+                'nama' => $this->request->getPost('nama'),
+                'wa' => $this->request->getPost('wa'),
+            ];
+            $this->kuesionerModel->update($id_kuesioner, $data);
+
+            // Redirect atau tampilkan pesan sukses
+            session()->setFlashdata('pesan', 'Kuesioner anda sudah Terkirim!...');
+            return redirect()->to(base_url('/home'));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/halaman_baru/' . $id_kuesioner))->withInput()->with('errors', $validation->getErrors());
+        }
     }
 
 

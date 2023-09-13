@@ -31,10 +31,10 @@
     <div class="col">
         <table>
             <tr>
-                <td>Tanggal Survei : <?= $kuesioner['tgl_survei'] ?></td>
+                <td>Tanggal Survei : </td>
                 <td></td>
                 <td>
-                    Jam Survei : <?= $kuesioner['jam_survei'] ?>
+                    Jam Survei :
                 </td>
             </tr>
         </table>

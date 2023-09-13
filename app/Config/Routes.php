@@ -49,7 +49,12 @@ $routes->get('/profil_organisasi', 'Home::profil_organisasi');
 $routes->get('/profil_sambutan', 'Home::profil_sambutan');
 $routes->get('/profil_pejabat', 'Home::profil_pejabat');
 $routes->get('/peta', 'Home::peta_rencana');
+
 $routes->get('/web/kuesioner', 'Home::kuesioner');
+$routes->post('/add/kuesioner', 'Home::add_kuesioner');
+$routes->get('/progres_add_kuesioner/(:num)', 'Home::halaman_baru/$1');
+$routes->post('/proses/add', 'Home::proses_nomor_wa');
+
 $routes->get('/web/sop', 'Home::sop');
 $routes->get('/kontak', 'Home::kontak');
 $routes->get('/perizinan', 'Home::perizinan');
