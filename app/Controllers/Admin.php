@@ -280,10 +280,10 @@ class Admin extends BaseController
                     'required' => 'isian wajib diisi'
                 ]
             ],
-            'tanggal' => [
+            'tanggal_kejadian' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'tanggal wajib diisi'
+                    'required' => 'tanggal kejadian wajib diisi'
                 ]
             ],
             'lokasi' => [
@@ -310,7 +310,7 @@ class Admin extends BaseController
             $data = [
                 'subjek' => $this->request->getPost('subjek'),
                 'isian' => $this->request->getPost('isian'),
-                'tanggal' => $this->request->getPost('tanggal'),
+                'tanggal_kejadian' => $this->request->getPost('tanggal_kejadian'),
                 'lokasi' => $this->request->getPost('lokasi'),
                 'kategori' => $this->request->getPost('kategori'),
                 'slug' => url_title($this->request->getPost('subjek'), '-', true)
@@ -359,10 +359,10 @@ class Admin extends BaseController
                     'required' => 'isian wajib diisi'
                 ]
             ],
-            'tanggal' => [
+            'tanggal_kejadian' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'tanggal wajib diisi'
+                    'required' => 'tanggal kejadian wajib diisi'
                 ]
             ],
             'lokasi' => [
@@ -389,7 +389,7 @@ class Admin extends BaseController
             $data = [
                 'subjek' => $this->request->getPost('subjek'),
                 'isian' => $this->request->getPost('isian'),
-                'tanggal' => $this->request->getPost('tanggal'),
+                'tanggal_kejadian' => $this->request->getPost('tanggal_kejadian'),
                 'lokasi' => $this->request->getPost('lokasi'),
                 'kategori' => $this->request->getPost('kategori'),
                 'slug' => url_title($this->request->getPost('subjek'), '-', true)

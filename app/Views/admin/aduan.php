@@ -15,9 +15,9 @@
         </li>
         <li class="breadcrumb-item active"><a href="javascript:void(0)">Aduan Masyarakat</a></li>
     </ol>
-    <a href="<?php echo base_url('/admin/aduan_create') ?>" class="btn btn-primary">
+    <!-- <a href="</?php echo base_url('/admin/aduan_create') ?>" class="btn btn-primary">
         <span class="btn-icon-start text-primary"><i class="fa fa-plus color-info"></i>
-        </span>Add Aduan</a>
+        </span>Add Aduan</a> -->
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -49,6 +49,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Tanggal Kejadian</th>
                                     <th>Kategori</th>
                                     <th>Lokasi</th>
                                     <th>Subjek</th>
@@ -61,11 +62,12 @@
                                 foreach ($aduan as $item) : ?>
                                     <tr>
                                         <td><a href="javascript:void(0)"><?= $no++; ?></a></td>
+                                        <td><span><?= $item['tanggal_kejadian'] ?></span></td>
                                         <td><span><?= $item['kategori'] ?></span></td>
                                         <td><span><?= $item['lokasi'] ?></span></td>
                                         <td><span><?= substr($item['subjek'], 0, 30); ?>...</span></td>
                                         <td>
-                                            <a class="btn btn-warning" href="<?= base_url('/admin/aduan_edit/' . $item['id']) ?>">Edit</a>
+                                            <a class="btn btn-warning" href="<?= base_url('/admin/aduan_edit/' . $item['id']) ?>">Lihat Aduan</a>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $item['id'] ?>">Hapus</button>
                                         </td>
                                     </tr>

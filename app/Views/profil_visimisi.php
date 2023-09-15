@@ -3,19 +3,19 @@
 <!-- isi -->
 <div class="page-title-area">
     <div class="bg-text">
-        <span>visi misi<br>Profil visi misi<br>Visi Misi<br>DPMPTSP</span>
+        <span>Moto<br>dan<br>Tujuan<br>OPD</span>
     </div>
     <div class="d-table">
         <div class="d-table-cell">
             <div class="container">
                 <div class="title-item">
-                    <h2>Visi Misi</h2>
+                    <h2>Moto & Tujuan OPD</h2>
                     <ul>
                         <li>
                             <a href="<?php echo base_url('/home') ?>">Home</a>
                         </li>
                         <li>
-                            <span>Visi Misi</span>
+                            <span>Moto & Tujuan OPD</span>
                         </li>
                     </ul>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="section-title two">
                         <img src="<?php echo base_url() ?>assetsa/img/it-startup/baner.jpg" alt="Design">
                         <br><br>
-                        <span class="sub-title">Visi & Misi</span>
+                        <span class="sub-title">Moto & Tujuan OPD</span>
                         <h2>DPMPTSP</h2>
                     </div>
                     <p>

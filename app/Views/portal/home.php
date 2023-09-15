@@ -195,11 +195,11 @@
 
                         </div>
 
-                        <h3><a href="#" class="link">Perizinan Sektor Pertanian</a></h3>
+                        <h3><a href="#" class="link">Perizinan Sektor Kesehatan Obat dan Makanan</a></h3>
 
                         <div class="icon-hover">
 
-                            <h3><a href="#" class="link">Perizinan Sektor Pertanian</a></h3>
+                            <h3><a href="#" class="link">Perizinan Sektor Kesehatan Obat dan Makanan</a></h3>
 
                             <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
 
@@ -227,15 +227,15 @@
 
                         </div>
 
-                        <h3><a href="#" class="link">Perizinan Pengumpulan Uang</a></h3>
+                        <h3><a href="#" class="link">Perizinan Sektor Perhubungan</a></h3>
 
                         <div class="icon-hover">
 
-                            <h3><a href="#" class="link">Perizinan Pengumpulan Uang / Barang</a></h3>
+                            <h3><a href="#" class="link">Perizinan Sektor Perhubungan</a></h3>
 
                             <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
 
-                            <a class="more" href="<?php echo base_url('/kuesioner')?>">Klik Disini</a>
+                            <a class="more" href="<?php echo base_url('/kuesioner') ?>">Klik Disini</a>
 
                         </div>
 
@@ -244,40 +244,6 @@
                 </div>
 
                 <!--// end -->
-
-
-
-                <!-- item -->
-
-                <div class="col-lg-3 col-md-6">
-
-                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
-
-                        <div class="icon">
-
-                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_3.svg" alt="">
-
-                        </div>
-
-                        <h3><a href="#" class="link">Perizinan Sektor Damkar</a></h3>
-
-                        <div class="icon-hover">
-
-                            <h3><a href="#" class="link">Perizinan Sektor Damkar</a></h3>
-
-                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
-
-                            <a class="more" href="#">Klik Disini</a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!--// end -->
-
-
 
                 <!-- item -->
 
@@ -291,7 +257,7 @@
 
                         </div>
 
-                        <h3><a href="#" class="link">Perizinan Sektor Ketenagarerkaan</a></h3>
+                        <h3><a href="#" class="link">Perizinan Sektor Ketenagakerjaan</a></h3>
 
                         <div class="icon-hover">
 
@@ -323,11 +289,11 @@
 
                         </div>
 
-                        <h3><a href="#" class="link">Perizinan Sektor Lain</a></h3>
+                        <h3><a href="#" class="link">Perizinan Sektor Pekerjaan Umum dan Tata Ruang</a></h3>
 
                         <div class="icon-hover">
 
-                            <h3><a href="#" class="link">Perizinan Sektor Lain</a></h3>
+                            <h3><a href="#" class="link">Perizinan Sektor Pekerjaan Umum dan Tata Ruang</a></h3>
 
                             <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
 
@@ -355,11 +321,11 @@
 
                         </div>
 
-                        <h3><a href="#" class="link">Perizinan Sektor Lingkungan</a></h3>
+                        <h3><a href="#" class="link">Perizinan Komunikasi dan Informatika</a></h3>
 
                         <div class="icon-hover">
 
-                            <h3><a href="#" class="link">Perizinan Sektor Lingkungan</a></h3>
+                            <h3><a href="#" class="link">Perizinan Komunikasi dan Informatika</a></h3>
 
                             <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
 
@@ -387,11 +353,11 @@
 
                         </div>
 
-                        <h3><a href="#" class="link">Perizinan Sektor Pendidikan</a></h3>
+                        <h3><a href="#" class="link">Perizinan Perdagangan, Perindustrian, Koperasi & UMKM</a></h3>
 
                         <div class="icon-hover">
 
-                            <h3><a href="#" class="link">Perizinan Sektor Pendidikan</a></h3>
+                            <h3><a href="#" class="link">Perizinan Perdagangan, Perindustrian, Koperasi & UMKM</a></h3>
 
                             <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
 
@@ -406,7 +372,341 @@
                 <!--// end -->
 
 
+                <!-- item -->
 
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Perikanan</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Perikanan</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Pariwisata</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Pariwisata</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Pertanian & Peternakan</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Pertanian & Peternakan</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Lingkungan Hidup</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Lingkungan Hidup</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Pendidikan & Kebudayaan</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Pendidikan & Kebudayaan</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Sosial</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Sosial</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Pertanahan</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Pertanahan</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Pendapatan Daerah</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Pendapatan Daerah</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor Sosial</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor Sosial</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Perizinan Sektor KESBANGPOL</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Perizinan Sektor KESBANGPOL</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
+
+
+                <!-- item -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="icon-text layout-6 wow flipInX" data-wow-delay="0.6s">
+
+                        <div class="icon">
+
+                            <img src="<?php echo base_url() ?>portal/assets/icons/tech/icon_7.svg" alt="">
+
+                        </div>
+
+                        <h3><a href="#" class="link">Sektor Lainnya</a></h3>
+
+                        <div class="icon-hover">
+
+                            <h3><a href="#" class="link">Sektor Lainnya</a></h3>
+
+                            <div class="text">First, we will have a meeting and listen to your wishes & needs. What you want to get from us</div>
+
+                            <a class="more" href="#">Klik Disini</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--// end -->
 
 
             </div>

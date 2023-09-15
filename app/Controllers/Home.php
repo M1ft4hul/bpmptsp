@@ -7,8 +7,9 @@ use App\Models\BeritaModel;
 use App\Models\BerkasModel;
 use App\Models\CategoryModel;
 use App\Models\GalleryModel;
-use App\Models\KuesionerModel;
 use App\Models\MenuModel;
+use App\Models\KuesionerModel;
+
 
 class Home extends BaseController
 {
@@ -97,10 +98,10 @@ class Home extends BaseController
                     'required' => 'isian wajib diisi'
                 ]
             ],
-            'tanggal' => [
+            'tanggal_kejadian' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'tanggal wajib diisi'
+                    'required' => 'tanggal_kejadian wajib diisi'
                 ]
             ],
             'lokasi' => [
@@ -115,11 +116,19 @@ class Home extends BaseController
                     'required' => 'kategori wajib diisi'
                 ]
             ],
+            // 'image' => [
+            //     'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
+            //     'errors' => [
+            //         'uploaded' => 'Gambar wajib diunggah',
+            //         'max_size' => 'Ukuran gambar maksimum adalah 1MB',
+            //         'is_image' => 'File harus berupa gambar'
+            //     ]
+            // ],
         ])) {
             $data = [
                 'subjek' => $this->request->getPost('subjek'),
                 'isian' => $this->request->getPost('isian'),
-                'tanggal' => $this->request->getPost('tanggal'),
+                'tanggal_kejadian' => $this->request->getPost('tanggal_kejadian'),
                 'lokasi' => $this->request->getPost('lokasi'),
                 'kategori' => $this->request->getPost('kategori'),
                 'slug' => url_title($this->request->getPost('subjek'), '-', true)
@@ -285,7 +294,6 @@ class Home extends BaseController
             return redirect()->to(base_url('/halaman_baru/' . $id_kuesioner))->withInput()->with('errors', $validation->getErrors());
         }
     }
-
 
     public function sop()
     {

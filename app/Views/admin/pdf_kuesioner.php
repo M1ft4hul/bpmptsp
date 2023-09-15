@@ -34,7 +34,7 @@
                 <td>Tanggal Survei : </td>
                 <td></td>
                 <td>
-                    Jam Survei :
+                    Jam Survei : 
                 </td>
             </tr>
         </table>

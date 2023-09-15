@@ -116,10 +116,10 @@
                                 <label class="col-lg-3 col-form-label" for="validationCustom01">Tanggal *
                                 </label>
                                 <div class="col-lg-6 form-material">
-                                    <input type="text" name="tanggal" value="<?= (old('tanggal')) ? old('tanggal') : $aduan['tanggal'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('tanggal')) ? 'is-invalid'  : ''; ?>" placeholder="000-00-00" id="mdate">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('tanggal', session()->getFlashdata('errors'))) : ?>
+                                    <input type="text" name="tanggal_kejadian" value="<?= (old('tanggal_kejadian')) ? old('tanggal_kejadian') : $aduan['tanggal_kejadian'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('tanggal_kejadian')) ? 'is-invalid'  : ''; ?>" placeholder="000-00-00" id="mdate">
+                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('tanggal_kejadian', session()->getFlashdata('errors'))) : ?>
                                         <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['tanggal']; ?>
+                                            <?= session()->getFlashdata('errors')['tanggal_kejadian']; ?>
                                         </p>
                                     <?php endif; ?>
                                 </div>

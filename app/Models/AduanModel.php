@@ -8,5 +8,5 @@ class AduanModel extends Model
 {
     protected $table = 'aduan';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['subjek', 'lokasi', 'kategori', 'isian', 'image', 'tanggal', 'slug'];
+    protected $allowedFields = ['subjek', 'lokasi', 'kategori', 'isian', 'image', 'tanggal_kejadian', 'slug'];
 }

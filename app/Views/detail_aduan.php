@@ -46,8 +46,8 @@
                             </li>
                             <li>
                                 <i class='bx bx-calendar'></i>
-                                <h3>Tanggal:</h3>
-                                <span><?= date('d F, Y', strtotime($aduan['tanggal'])); ?></span>
+                                <h3>Tanggal_aduan:</h3>
+                                <span><?= date('d F, Y', strtotime($aduan['tanggal_aduan'])); ?></span>
                             </li>
                             <li>
                                 <i class='bx bx-current-location'></i>

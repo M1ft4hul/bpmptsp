@@ -28,7 +28,7 @@
             <?php foreach ($berita as $item) : ?>
 
                 <div class="col-sm-6 col-lg-4">
-                    <div class="blog-item blog-img-one">
+                    <div class="blog-item blog-img-one" style="background-image:url('<?= base_url('gambar/' . $item['image']); ?>');">
                         <ul class="top">
                             <li><?= $item['tanggal']; ?></li>
                             <li><?= $item['nama_kategori']; ?></li>

@@ -26,7 +26,7 @@
                                     <a href="<?php echo base_url('/profil_sejarah') ?>" class="nav-link">Sejarah Singkat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('/profil_visimisi') ?>" class="nav-link">Visi & Misi</a>
+                                    <a href="<?php echo base_url('/profil_visimisi') ?>" class="nav-link">Moto & Tujuan OPD</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo base_url('/profil_organisasi') ?>" class="nav-link">Struktur Organisai</a>
@@ -45,6 +45,14 @@
                                 <li class="nav-item">
                                     <a href="<?php echo base_url('/perizinan') ?>" class="nav-link">Perizinan Online</a>
                                 </li>
+                                <!-- menu yang mau di kerja -->
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() ?>" class="nav-link">SP (Standar Pelayanan)</a>
+                                </li>
+                                <!-- end menu -->
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url('/web/sop') ?>" class="nav-link dropdown-toggle">Standar Operasional Prosedur</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -56,17 +64,17 @@
                                 <li class="nav-item">
                                     <a href="<?php echo base_url('/galeri') ?>" class="nav-link">Galleri Foto</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url('/peta') ?>" class="nav-link dropdown-toggle">Peta Rencana</a>
+                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('/peta') ?>" class="nav-link dropdown-toggle">Peta Rencana</a>
-                        </li>
+                        <!-- <li class="nav-item">
+                        </li> -->
                         <li class="nav-item">
                             <a href="<?php echo base_url('/web/kuesioner') ?>" class="nav-link dropdown-toggle">SKM</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('/web/sop') ?>" class="nav-link dropdown-toggle">SOP</a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="<?php echo base_url('/kontak') ?>" class="nav-link dropdown-toggle">Kontak</a>
                         </li>
