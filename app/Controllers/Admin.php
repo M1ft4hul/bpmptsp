@@ -9,6 +9,7 @@ use App\Models\GalleryModel;
 use App\Models\BeritaModel;
 use App\Models\AduanModel;
 use App\Models\BerkasModel;
+use App\Models\JenisAduanModel;
 use App\Models\KuesionerModel;
 use App\Models\UserModel;
 
@@ -16,6 +17,7 @@ class Admin extends BaseController
 {
     public function __construct()
     {
+        $this->jenisAduanModel = new JenisAduanModel();
         $this->berkasModel = new BerkasModel();
         $this->userModel = new UserModel();
         $this->kuesionerModel = new KuesionerModel();
@@ -248,7 +250,10 @@ class Admin extends BaseController
     // menu aduan
     public function aduan()
     {
-        $aduan = $this->aduanModel->findAll();
+        $aduan = $this->aduanModel->join('jenis_aduan', 'jenis_aduan.id_jenis = aduan.jenis_id')
+            ->select('aduan.*, jenis_aduan.nama_aduan as nama_jenis_aduan')
+            ->findAll();
+        // $aduan = $this->aduanModel->findAll();
         $data = [
             'aduan' => $aduan,
         ];
@@ -256,88 +261,12 @@ class Admin extends BaseController
         return view('admin/aduan', $data);
     }
 
-    public function aduan_create()
-    {
-        $aduan = $this->aduanModel->findAll();
-        $data = [
-            'aduan' => $aduan,
-        ];
-        return view('admin/aduan_create', $data);
-    }
-
-    public function aduan_store()
-    {
-        if ($this->validate([
-            'subjek' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'subjek wajib diisi'
-                ]
-            ],
-            'isian' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'isian wajib diisi'
-                ]
-            ],
-            'tanggal_kejadian' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'tanggal kejadian wajib diisi'
-                ]
-            ],
-            'lokasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'lokasi wajib diisi'
-                ]
-            ],
-            'kategori' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'kategori wajib diisi'
-                ]
-            ],
-            'image' => [
-                'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
-                'errors' => [
-                    'uploaded' => 'Gambar wajib diunggah',
-                    'max_size' => 'Ukuran gambar maksimum adalah 1MB',
-                    'is_image' => 'File harus berupa gambar'
-                ]
-            ],
-        ])) {
-            $data = [
-                'subjek' => $this->request->getPost('subjek'),
-                'isian' => $this->request->getPost('isian'),
-                'tanggal_kejadian' => $this->request->getPost('tanggal_kejadian'),
-                'lokasi' => $this->request->getPost('lokasi'),
-                'kategori' => $this->request->getPost('kategori'),
-                'slug' => url_title($this->request->getPost('subjek'), '-', true)
-            ];
-
-            $image = $this->request->getFile('image');
-
-            if ($image->isValid()) {
-                $newName = $image->getRandomName();
-                $image->move('gambar', $newName);
-
-                $data['image'] = $newName;
-            }
-
-            $this->aduanModel->insert($data);
-
-            session()->setFlashdata('pesan', 'Aduan berhasil ditambahkan.');
-            return redirect()->to(base_url('/admin/aduan'));
-        } else {
-            $validation = \Config\Services::validation();
-            return redirect()->to(base_url('/admin/aduan_create'))->withInput()->with('errors', $validation->getErrors());
-        }
-    }
 
     public function aduan_edit($id)
     {
-        $aduan = $this->aduanModel->find($id);
+        $aduan = $this->aduanModel->join('jenis_aduan', 'jenis_aduan.id_jenis = aduan.jenis_id')
+        ->select('aduan.*, jenis_aduan.nama_aduan as nama_jenis_aduan')
+        ->find($id);
         $data = [
             'aduan' => $aduan
         ];
@@ -347,65 +276,20 @@ class Admin extends BaseController
     public function aduan_update($id)
     {
         if ($this->validate([
-            'subjek' => [
+            'tanggapan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'subjek wajib diisi'
-                ]
-            ],
-            'isian' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'isian wajib diisi'
-                ]
-            ],
-            'tanggal_kejadian' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'tanggal kejadian wajib diisi'
-                ]
-            ],
-            'lokasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'lokasi wajib diisi'
-                ]
-            ],
-            'kategori' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'kategori wajib diisi'
-                ]
-            ],
-            'image' => [
-                'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
-                'errors' => [
-                    'uploaded' => 'Gambar wajib diunggah',
-                    'max_size' => 'Ukuran gambar maksimum adalah 1MB',
-                    'is_image' => 'File harus berupa gambar'
+                    'required' => 'tanggapan wajib diisi'
                 ]
             ],
         ])) {
             $data = [
-                'subjek' => $this->request->getPost('subjek'),
-                'isian' => $this->request->getPost('isian'),
-                'tanggal_kejadian' => $this->request->getPost('tanggal_kejadian'),
-                'lokasi' => $this->request->getPost('lokasi'),
-                'kategori' => $this->request->getPost('kategori'),
-                'slug' => url_title($this->request->getPost('subjek'), '-', true)
+                'tanggapan' => $this->request->getPost('tanggapan')
             ];
-
-            $image = $this->request->getFile('image');
-            if ($image && $image->isValid()) {
-                $newImageName = $image->getRandomName();
-                $image->move('gambar', $newImageName);
-
-                $data['image'] = $newImageName;
-            }
 
             $this->aduanModel->update($id, $data);
 
-            session()->setFlashdata('pesan', 'Aduan berhasil diupdate');
+            session()->setFlashdata('pesan', 'Aduan Sudah diTanggapi');
 
             return redirect()->to('/admin/aduan');
         } else {
@@ -422,7 +306,85 @@ class Admin extends BaseController
 
         return redirect()->to('/admin/aduan');
     }
+    // end aduan
 
+    // jenis aduan
+    public function jenis_aduan()
+    {
+        $jenis_aduan = $this->jenisAduanModel->findAll();
+        $data = [
+            'jenis_aduan' => $jenis_aduan,
+        ];
+        return view('admin/jenis_aduan', $data);
+    }
+
+    public function jenis_aduan_create()
+    {
+        $jenis_aduan = $this->jenisAduanModel->findAll();
+        $data = [
+            'jenis_aduan' => $jenis_aduan,
+        ];
+        return view('admin/jenis_aduan_create', $data);
+    }
+
+    public function jenis_aduan_store()
+    {
+        if ($this->validate([
+            'nama_aduan' => [
+                'rules' => 'required|is_unique[jenis_aduan.nama_aduan]',
+                'errors' => [
+                    'required' => 'Jenis Aduan Wajib Diisi',
+                    'is_unique' => 'Jenis Aduan sudah ada, masukkan Nama Jenis Aduan yang berbeda.',
+                ]
+            ],
+        ])) {
+            $data = [
+                'nama_aduan' => $this->request->getPost('nama_aduan'),
+            ];
+            $this->jenisAduanModel->insert($data);
+            session()->setFlashdata('pesan', 'Jenis Aduan berhasil ditambah');
+            return redirect()->to(base_url('/admin/jenis_aduan'));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/admin/jenis_create'))->withInput()->with('errors', $validation->getErrors());
+        }
+    }
+
+    public function jenis_aduan_edit($id_jenis)
+    {
+        $jenis_aduans = $this->jenisAduanModel->find($id_jenis);
+        $validation = \Config\Services::validation();
+        $data = [
+            'validation' => $validation,
+            'jenis_aduans' => $jenis_aduans
+        ];
+        return view('admin/jenis_aduan_edit', $data);
+    }
+
+    public function jenis_aduan_update($id_jenis)
+    {
+        $rules = [
+            'nama_aduan' => [
+                'rules' => 'required|is_unique[jenis_aduan.nama_aduan]',
+                'errors' => [
+                    'required' => 'Jenis Aduan Wajib Diisi',
+                    'is_unique' => 'Jenis Aduan sudah ada, masukkan Nama Jenis Aduan yang berbeda.',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $data = [
+            'nama_aduan' => $this->request->getPost('nama_aduan')
+        ];
+
+        $this->jenisAduanModel->update($id_jenis, $data);
+
+        return redirect()->to('/admin/jenis_aduan')->with('pesan', 'Jenis Aduan berhasil diupdate');
+    
+    }
 
     // menu berita
     public function berita()

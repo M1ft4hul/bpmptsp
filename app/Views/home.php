@@ -316,11 +316,11 @@
         <div class="portfolio-slider owl-theme owl-carousel">
             <?php foreach ($pengaduan as $item) : ?>
                 <div class="portfolio-item">
-                    <img width="294" height="300" src="<?= base_url() ?>/gambar/<?= $item['image'] ?>" alt="Portfolio">
+                    <img width="294" height="300" src="<?php echo base_url()?>gambar/gambar.jpg" alt="Portfolio">
                     <div class="portfolio-inner">
-                        <span><?= $item['kategori']; ?></span>
+                        <span><?= $item['nama_jenis_aduan']; ?></span>
                         <h3>
-                            <a href="<?= base_url('aduan/show/' . $item['slug']) ?>"><?= substr($item['subjek'], 0, 30); ?>...</a>
+                            <a href="<?= base_url('aduan/show/' . $item['slug']) ?>"><?= substr($item['isian'], 0, 30); ?>...</a>
                         </h3>
                     </div>
                 </div>

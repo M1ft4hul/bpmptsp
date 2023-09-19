@@ -34,61 +34,148 @@
         </div>
         <form action="<?php echo base_url('/home/aduan/store') ?>" method="post" id="contactForm" enctype="multipart/form-data">
             <div class="row">
-                <!-- <div class="col-sm-6 col-lg-6">
+                <!-- nama -->
+                <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
                         <label>
                             <i class='bx bx-user'></i>
                         </label>
-                        <input type="text" name="nama_pengadu" value="</?= old('nama_pengadu') ?>" id="nama_pengadu" class="form-control</?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('nama_pengadu')) ? 'is-invalid'  : ''; ?>" placeholder="Masukkan Nama anda">
-                        </?php if (session()->getFlashdata('errors') !== null && array_key_exists('nama_pengadu', session()->getFlashdata('errors'))) : ?>
+                        <input type="text" name="nama" value="<?= old('nama') ?>" id="nama" class="form-control<?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('nama')) ? 'is-invalid'  : ''; ?>" placeholder="Masukkan Nama anda *">
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('nama', session()->getFlashdata('errors'))) : ?>
                             <p class="text-danger">
-                                </?= session()->getFlashdata('errors')['nama_pengadu']; ?>
+                                <?= session()->getFlashdata('errors')['nama']; ?>
                             </p>
-                        </?php endif; ?>
+                        <?php endif; ?>
                     </div>
-                </div> -->
+                </div>
+                <!-- end nama -->
 
-                <!-- <div class="col-sm-6 col-lg-6">
+                <!-- jenis kelamin -->
+                <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <label>
-                            <i class='bx bx-mail-send'></i>
-                        </label>
-                        <input type="email" value="</?= old('email') ?>" name="email" id="email" class="form-control</?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('email')) ? 'is-invalid'  : ''; ?>" placeholder="Masukkan Email anda">
-                        </?php if (session()->getFlashdata('errors') !== null && array_key_exists('email', session()->getFlashdata('errors'))) : ?>
-                            <p class="text-danger">
-                                </?= session()->getFlashdata('errors')['email']; ?>
-                            </p>
-                        </?php endif; ?>
+                        <select name="jk" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="" disabled selected>Jenis Kelamin</option>
+                            <option value="laki-laki">Laki-Laki</option>
+                            <option value="perempuan">Perempuan</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Jenis kelamin harus diIsi.
+                        </div>
                     </div>
-                </div> -->
+                </div>
+                <!-- end jenis kelamin -->
 
-                <!-- <div class="col-sm-6 col-lg-6">
-                    <div class="form-group">
-                        <label>
-                            <i class='bx bx-phone-call'></i>
-                        </label>
-                        <input type="number" value="</?= old('telp') ?>" name="telp" id="phone_number" placeholder="Masukkan Nomor Hp/Wa" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('telp')) ? 'is-invalid'  : ''; ?>">
-                        </?php if (session()->getFlashdata('errors') !== null && array_key_exists('telp', session()->getFlashdata('errors'))) : ?>
-                            <p class="text-danger">
-                                </?= session()->getFlashdata('errors')['telp']; ?>
-                            </p>
-                        </?php endif; ?>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-md-12 col-lg-12">
+                <!-- alamat rumah -->
+                <div class="col-md-12 col-lg-12">
                     <div class="form-group">
                         <label>
                             <i class='bx bx-comment-detail'></i>
                         </label>
-                        <textarea name="alamat_lengkap" class="form-control </?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('alamat_lengkap')) ? 'is-invalid'  : ''; ?>" id="validationCustom01" placeholder="Alamat Lengkap"><?= old('alamat_lengkap') ?></textarea>
-                        </?php if (session()->getFlashdata('errors') !== null && array_key_exists('alamat_lengkap', session()->getFlashdata('errors'))) : ?>
+                        <textarea cols="30" rows="5" name="alamat_rumah" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('alamat_rumah')) ? 'is-invalid'  : ''; ?>" id="validationCustom01" placeholder="Alamat Rumah *"><?= old('alamat_rumah') ?></textarea>
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('alamat_rumah', session()->getFlashdata('errors'))) : ?>
                             <p class="text-danger">
-                                </?= session()->getFlashdata('errors')['alamat_lengkap']; ?>
+                                <?= session()->getFlashdata('errors')['alamat_rumah']; ?>
                             </p>
-                        </?php endif; ?>
+                        <?php endif; ?>
                     </div>
-                </div> -->
+                </div>
+                <!-- end alamat rumah -->
+
+                <!-- pekerjaan -->
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label>
+                            <i class='bx bx-home'></i>
+                        </label>
+                        <input type="text" value="<?= old('pekerjaan') ?>" name="pekerjaan" id="pekerjaan" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('pekerjaan')) ? 'is-invalid'  : ''; ?>" placeholder="Masukkan Pekerjaan Anda *">
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('pekerjaan', session()->getFlashdata('errors'))) : ?>
+                            <p class="text-danger">
+                                <?= session()->getFlashdata('errors')['pekerjaan']; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!-- end pekerjaan -->
+
+                <!-- alamat kantor -->
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label>
+                            <i class='bx bx-home'></i>
+                        </label>
+                        <textarea cols="30" rows="5" name="alamat_kantor" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('alamat_kantor')) ? 'is-invalid'  : ''; ?>" id="validationCustom01" placeholder="Alamat Kantor *"><?= old('alamat_kantor') ?></textarea>
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('alamat_kantor', session()->getFlashdata('errors'))) : ?>
+                            <p class="text-danger">
+                                <?= session()->getFlashdata('errors')['alamat_kantor']; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!-- end alamat kantor -->
+
+                <!-- email -->
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <label>
+                            <i class='bx bx-mail-send'></i>
+                        </label>
+                        <input type="text" name="email" value="<?= old('email') ?>" id="email" class="form-control<?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('email')) ? 'is-invalid'  : ''; ?>" placeholder="Masukkan Email Anda *">
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('email', session()->getFlashdata('errors'))) : ?>
+                            <p class="text-danger">
+                                <?= session()->getFlashdata('errors')['email']; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!-- end email -->
+
+                <!-- ktp -->
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <label>
+                            <i class='bx bx-id-card'></i>
+                        </label>
+                        <input type="text" name="ktp" value="<?= old('ktp') ?>" id="ktp" class="form-control<?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('ktp')) ? 'is-invalid'  : ''; ?>" placeholder="Masukkan No.KTP Anda *">
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('ktp', session()->getFlashdata('errors'))) : ?>
+                            <p class="text-danger">
+                                <?= session()->getFlashdata('errors')['ktp']; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!-- end ktp -->
+
+                <!-- nomor telp -->
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <label>
+                            <i class='bx bx-phone-call'></i>
+                        </label>
+                        <input type="number" value="<?= old('tlp') ?>" name="tlp" id="phone_number" placeholder="Masukkan Nomor Hp/Wa" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('tlp')) ? 'is-invalid'  : ''; ?>">
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('tlp', session()->getFlashdata('errors'))) : ?>
+                            <p class="text-danger">
+                                <?= session()->getFlashdata('errors')['tlp']; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!-- end nomor telp -->
+
+                <!-- jenis aduan -->
+                <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <select name="jenis_id" class="form-select form-select-lg mb-3">
+                            <option disabled selected>Jenis Aduan Masyarakat</option>
+                            <?php foreach ($jenis_aduan as $a) : ?>
+                                <option value="<?= $a['id_jenis']; ?>"><?= $a['nama_aduan']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            Jenis kelamin harus diIsi.
+                        </div>
+                    </div>
+                </div>
+                <!-- end jenis aduan -->
 
                 <!-- subjek -->
                 <div class="col-md-12 col-lg-12">
@@ -112,7 +199,7 @@
                         <label>
                             <i class='bx bx-comment-detail'></i>
                         </label>
-                        <textarea name="isian" class="form-control<?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('isian')) ? 'is-invalid'  : ''; ?>" id="isian" cols="30" rows="8" placeholder="Ketik Isi Laporan Anda *"><?= old('isian') ?></textarea>
+                        <textarea name="isian" class="form-control<?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('isian')) ? 'is-invalid'  : ''; ?>" id="isian" cols="30" rows="9" placeholder="Ketik Isi Laporan Anda *"><?= old('isian') ?></textarea>
                         <?php if (session()->getFlashdata('errors') !== null && array_key_exists('isian', session()->getFlashdata('errors'))) : ?>
                             <p class="text-danger">
                                 <?= session()->getFlashdata('errors')['isian']; ?>
@@ -154,32 +241,24 @@
                 </div>
                 <!-- end lokasi -->
 
-                <!-- kategori (data baru) -->
-                <div class="col-sm-6 col-lg-6">
+                <!-- tujuan pengaduan -->
+                <div class="col-md-12 col-lg-12">
                     <div class="form-group">
                         <label>
-                            <i class='bx bxs-map'></i>
+                            <i class='bx bx-comment-detail'></i>
                         </label>
-                        <input type="text" value="<?= old('kategori') ?>" name="kategori" id="kategori" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('kategori')) ? 'is-invalid'  : ''; ?>" placeholder="Ketik Kategori Laporan Anda *">
-                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('kategori', session()->getFlashdata('errors'))) : ?>
+                        <input type="text" value="<?= old('tujuan_pengaduan') ?>" name="tujuan_pengaduan" id="tujuan_pengaduan" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('tujuan_pengaduan')) ? 'is-invalid'  : ''; ?>" placeholder="Ketik Tujuan Pengaduan *">
+                        <?php if (session()->getFlashdata('errors') !== null && array_key_exists('tujuan_pengaduan', session()->getFlashdata('errors'))) : ?>
                             <p class="text-danger">
-                                <?= session()->getFlashdata('errors')['kategori']; ?>
+                                <?= session()->getFlashdata('errors')['tujuan_pengaduan	']; ?>
                             </p>
                         <?php endif; ?>
                     </div>
                 </div>
-                <!-- end lokasi -->
-
-                <!-- upload lampiran -->
-                <div class="col-sm-6 col-lg-6">
-                    <div class="form-group">
-                        <input type="file" name="image" id="formFile" class="form-control" accept="image/*">
-                    </div>
-                </div>
-                <!-- upload lampiran -->
+                <!-- end tujuan pengaduan -->
 
                 <div class="col-md-12 col-lg-12">
-                    <button type="submit" class="btn cmn-btn">
+                    <button type="submit" class="cmn-btn">
                         Kirim Aduan
                         <i class='bx bx-plus'></i>
                     </button>

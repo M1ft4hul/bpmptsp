@@ -29,7 +29,7 @@
             <div class="col-lg-8">
                 <div class="details-item">
                     <div class="details-img">
-                        <img src="<?= base_url('gambar/' . $aduan['image']); ?>" alt="Details">
+                        <img src="<?php echo base_url()?>gambar/gambar.jpg" alt="Details">
                         <h2><?= $aduan['subjek'] ?></h2>
                         <p><?= $aduan['isian'] ?></p>
                     </div>
@@ -41,13 +41,13 @@
                         <ul>
                             <li>
                                 <i class='bx bx-user'></i>
-                                <h3>Kategori:</h3>
-                                <span><?= $aduan['kategori'] ?></span>
+                                <h3>Jenis Aduan:</h3>
+                                <span><?= $aduan['nama_jenis_aduan'] ?></span>
                             </li>
                             <li>
                                 <i class='bx bx-calendar'></i>
-                                <h3>Tanggal_aduan:</h3>
-                                <span><?= date('d F, Y', strtotime($aduan['tanggal_aduan'])); ?></span>
+                                <h3>Tanggal Kejadian:</h3>
+                                <span><?= date('d F, Y', strtotime($aduan['tanggal_kejadian'])); ?></span>
                             </li>
                             <li>
                                 <i class='bx bx-current-location'></i>

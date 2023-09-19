@@ -21,142 +21,59 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Form Update Aduan</h4>
+                    <h4 class="card-title">Detail Aduan Masyarakat</h4>
 
                 </div>
 
                 <div class="card-body">
 
                     <div class="basic-form">
-                        <form action="/aduanUpdate/<?= $aduan['id']; ?>" method="post" class="form-valide-with-icon needs-validation" novalidate enctype="multipart/form-data">
-                            <!-- <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Nama Pengadu
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="text" value="</?= (old('nama_pengadu')) ? old('nama_pengadu') : $aduan['nama_pengadu'] ?>" class="form-control </?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('nama_pengadu')) ? 'is-invalid'  : ''; ?>" name="nama_pengadu" id="validationCustom01" placeholder="Masukkan nama pengadu">
-                                    </?php if (session()->getFlashdata('errors') !== null && array_key_exists('nama_pengadu', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            </?= session()->getFlashdata('errors')['nama_pengadu']; ?>
-                                        </p>
-                                    </?php endif; ?>
-                                </div>
-                            </div> -->
-                            <!-- <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Email
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="email" value="</?= (old('email')) ? old('email') : $aduan['email'] ?>" class="form-control </?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('email')) ? 'is-invalid'  : ''; ?>" name="email" id="validationCustom01" placeholder="Masukkan Email pengadu">
-                                    </?php if (session()->getFlashdata('errors') !== null && array_key_exists('email', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            </?= session()->getFlashdata('errors')['email']; ?>
-                                        </p>
-                                    </?php endif; ?>
-                                </div>
-                            </div> -->
-                            <!-- <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Hp/Wa
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="number" value="</?= (old('telp')) ? old('telp') : $aduan['telp'] ?>" class="form-control </?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('telp')) ? 'is-invalid'  : ''; ?>" name="telp" id="validationCustom01" placeholder="Masukkan Nomor Hp/Wa">
-                                    </?php if (session()->getFlashdata('errors') !== null && array_key_exists('telp', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            </?= session()->getFlashdata('errors')['telp']; ?>
-                                        </p>
-                                    </?php endif; ?>
-                                </div>
-                            </div> -->
-
-                            <!-- subjek -->
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Judul Laporan *
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="text" value="<?= (old('subjek')) ? old('subjek') : $aduan['subjek'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('subjek')) ? 'is-invalid'  : ''; ?>" name="subjek" id="validationCustom01" placeholder="Masukkan Subjek">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('subjek', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['subjek']; ?>
-                                        </p>
-                                    <?php endif; ?>
+                        <h3 class="mb-2 text-black"><?= $aduan['subjek']; ?></h3>
+                        <ul class="mb-4 post-meta d-flex flex-wrap">
+                            <li class="post-author me-3">Dari <?= $aduan['nama']; ?></li>
+                            <li class="post-date me-3"><i class="far fa-calendar-plus me-2"></i><?= $aduan['tanggal_kejadian']; ?></li>
+                            <li class="post-comment"><i class="far fa-file me-2"></i><?= $aduan['nama_jenis_aduan']; ?></li>
+                        </ul>
+                        <p><?= $aduan['isian']; ?>.</p>
+                        <div class="profile-skills mt-5 mb-5">
+                            <a class="btn btn-primary light btn-xs mb-1">Tujuan Pengaduan : <?= $aduan['tujuan_pengaduan']; ?></a>
+                        </div>
+                        <?php if (!empty($aduan['tanggapan'])) : ?>
+                            <div class="profile-skills mt-5 mb-5">
+                                <h4 class="text-primary mb-2">Tanggapan Anda :</h4>
+                                <p><?= $aduan['tanggapan']; ?>.</p>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <a href="<?php echo base_url('/admin/aduan') ?>" class="btn btn-danger light">Kembali</a>
                                 </div>
                             </div>
-                            <!-- end subjek -->
-
-                            <!-- lokasi -->
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Lokasi Kejadian*
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="text" value="<?= (old('lokasi')) ? old('lokasi') : $aduan['lokasi'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('lokasi')) ? 'is-invalid'  : ''; ?>" name="lokasi" id="validationCustom01" placeholder="Masukkan Lokasi Kejadian">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('lokasi', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['lokasi']; ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </div>
+                        <?php else : ?>
+                            <div class="comment-respond" id="respond">
+                                <h4 class="comment-reply-title text-primary mb-3" id="reply-title">Kirim Tanggapan </h4>
+                                <form action="/aduanUpdate/<?= $aduan['id']; ?>" method="post" class="comment-form" id="commentform">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label for="comment" class="text-black font-w600 form-label">Komentar</label>
+                                                <textarea rows="6" class="form-control h-100 <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('tanggapan')) ? 'is-invalid'  : ''; ?>" name="tanggapan" placeholder="Ketik Tanggapan Anda" id="comment"><?= old('tanggapan') ?></textarea>
+                                                <?php if (session()->getFlashdata('errors') !== null && array_key_exists('tanggapan', session()->getFlashdata('errors'))) : ?>
+                                                    <p class="text-danger">
+                                                        <?= session()->getFlashdata('errors')['tanggapan']; ?>
+                                                    </p>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <button type="submit" class="btn me-2 btn-primary">Simpan</button>
+                                                <a href="<?php echo base_url('/admin/aduan') ?>" class="btn btn-danger light">Kembali</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <!-- end lokasi -->
-
-                            <!-- kategori -->
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Kategori Laporan*
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="text" value="<?= (old('kategori')) ? old('kategori') : $aduan['kategori'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('kategori')) ? 'is-invalid'  : ''; ?>" name="kategori" id="validationCustom01" placeholder="Masukkan Kategori Laporan">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('kategori', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['kategori']; ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <!-- end kategori -->
-
-                            <!-- tanggal -->
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Tanggal *
-                                </label>
-                                <div class="col-lg-6 form-material">
-                                    <input type="text" name="tanggal_kejadian" value="<?= (old('tanggal_kejadian')) ? old('tanggal_kejadian') : $aduan['tanggal_kejadian'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('tanggal_kejadian')) ? 'is-invalid'  : ''; ?>" placeholder="000-00-00" id="mdate">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('tanggal_kejadian', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['tanggal_kejadian']; ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <!-- end tanggal -->
-
-                            <!-- isi aduan -->
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Isi Aduan
-                                </label>
-                                <div class="col-lg-9 form-material">
-                                    <textarea name="isian" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('isian')) ? 'is-invalid'  : ''; ?>" id="ckeditor"><?= $aduan['isian'] ?></textarea>
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('isian', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['isian']; ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <!-- end isi aduan -->
-
-                            <!-- upload lampiran -->
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Upload Lampiran</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('image')) ? 'is-invalid'  : ''; ?>" type="file" name="image" id="formFile" accept="image/*">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('image', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['image']; ?>
-                                        </p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <!-- end upload lampiran -->
-                            <button type="submit" class="btn me-2 btn-primary">Simpan</button>
-                            <a href="<?php echo base_url('/admin/aduan') ?>" class="btn btn-danger light">Kembali</a>
-                        </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

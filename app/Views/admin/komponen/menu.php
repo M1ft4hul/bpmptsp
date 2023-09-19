@@ -32,8 +32,7 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="<?php echo base_url('/admin/aduan') ?>" class="" aria-expanded="false">
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <div class="menu-icon">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5096 2.53165H7.41104C5.50437 2.52432 3.94146 4.04415 3.89654 5.9499V15.7701C3.85437 17.7071 5.38979 19.3121 7.32671 19.3552C7.35512 19.3552 7.38262 19.3561 7.41104 19.3552H14.7343C16.6538 19.2773 18.1663 17.6915 18.1525 15.7701V7.36798L13.5096 2.53165Z" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
@@ -44,8 +43,11 @@
                     </div>
                     <span class="nav-text">Aduan Masyarakat</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li><a href="<?php echo base_url('/admin/aduan') ?>">Data Aduan</a></li>
+                    <li><a href="<?php echo base_url('/admin/jenis_aduan') ?>">Jenis Aduan</a></li>
+                </ul>
             </li>
-
             <li>
                 <a href="<?php echo base_url('/admin/data_sop') ?>" class="" aria-expanded="false">
                     <div class="menu-icon">

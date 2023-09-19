@@ -95,12 +95,20 @@ $routes->post('/admin/gallery/store', 'Admin::gallery_store');
 
 //aduan
 $routes->get('/admin/aduan', 'Admin::aduan');
-$routes->get('/admin/aduan_create', 'Admin::aduan_create');
 $routes->get('/admin/aduan_edit/(:any)', 'Admin::aduan_edit/$1');
 
 $routes->post('/admin/aduan_delete/(:any)', 'Admin::aduan_delete/$1');
 $routes->post('/aduanUpdate/(:any)', 'Admin::aduan_update/$1');
-$routes->post('/admin/aduan/store', 'Admin::aduan_store');
+
+
+//jenis aduan
+$routes->get('/admin/jenis_aduan', 'Admin::jenis_aduan');
+$routes->get('/admin/jenis_create', 'Admin::jenis_aduan_create');
+$routes->get('/admin/jenis_edit/(:any)', 'Admin::jenis_aduan_edit/$1');
+
+$routes->post('/admin/jenis/store', 'Admin::jenis_aduan_store');
+$routes->post('/jenisUpdate/(:any)', 'Admin::jenis_aduan_update/$1');
+
 
 // kuesioner
 $routes->get('/admin/kuesioner', 'Admin::kuesioner');

@@ -7,6 +7,7 @@ use App\Models\BeritaModel;
 use App\Models\BerkasModel;
 use App\Models\CategoryModel;
 use App\Models\GalleryModel;
+use App\Models\JenisAduanModel;
 use App\Models\MenuModel;
 use App\Models\KuesionerModel;
 
@@ -15,6 +16,7 @@ class Home extends BaseController
 {
     public function __construct()
     {
+        $this->jenisAduanModel = new JenisAduanModel();
         $this->kuesionerModel = new KuesionerModel();
         $this->berkasModel = new BerkasModel();
         $this->galleryModel = new GalleryModel();
@@ -29,7 +31,11 @@ class Home extends BaseController
         $berita = $this->beritaModel->join('categories', 'categories.id = berita.category_id')
             ->select('berita.*, categories.nama as nama_kategori')
             ->findAll();
-        $pengaduan = $this->aduanModel->findAll();
+
+        $pengaduan = $this->aduanModel->join('jenis_aduan', 'jenis_aduan.id_jenis = aduan.jenis_id')
+            ->select('aduan.*, jenis_aduan.nama_aduan as nama_jenis_aduan')
+            ->findAll();
+        // $pengaduan = $this->aduanModel->findAll();
         $data = [
             'pengaduan' => $pengaduan,
             'berita' => $berita,
@@ -59,7 +65,10 @@ class Home extends BaseController
     // detail aduan
     public function show_aduan($slug)
     {
-        $aduan = $this->aduanModel->where('slug', $slug)->first();
+        $aduan = $this->aduanModel->join('jenis_aduan', 'jenis_aduan.id_jenis = aduan.jenis_id')
+            ->select('aduan.*, jenis_aduan.nama_aduan as nama_jenis_aduan')
+            ->where('slug', $slug)
+            ->first();
         $aduanLainnya = $this->aduanModel->where('id !=', $aduan['id'])->findAll();
 
         $data = [
@@ -74,9 +83,11 @@ class Home extends BaseController
     // kirim aduan di web
     public function aduan()
     {
+        $jenis_aduan = $this->jenisAduanModel->findAll();
         $aduan = $this->aduanModel->findAll();
         $validation = \Config\Services::validation();
         $data = [
+            'jenis_aduan' => $jenis_aduan,
             'aduan' => $aduan,
             'validation' => $validation
         ];
@@ -86,6 +97,48 @@ class Home extends BaseController
     public function aduan_simpan()
     {
         if ($this->validate([
+            'nama' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'nama wajib diisi'
+                ]
+            ],
+            'alamat_rumah' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'alamat rumah wajib diisi'
+                ]
+            ],
+            'pekerjaan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'pekerjaan wajib diisi'
+                ]
+            ],
+            'alamat_kantor' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'alamat kantor wajib diisi'
+                ]
+            ],
+            'email' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'email wajib diisi'
+                ]
+            ],
+            'ktp' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'ktp wajib diisi'
+                ]
+            ],
+            'tlp' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'tlp wajib diisi'
+                ]
+            ],
             'subjek' => [
                 'rules' => 'required',
                 'errors' => [
@@ -101,47 +154,42 @@ class Home extends BaseController
             'tanggal_kejadian' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'tanggal_kejadian wajib diisi'
+                    'required' => 'tanggal kejadian wajib diisi'
                 ]
             ],
-            'lokasi' => [
+            'tujuan_pengaduan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'lokasi wajib diisi'
+                    'required' => 'tujuan pengaduan wajib diisi'
                 ]
             ],
-            'kategori' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'kategori wajib diisi'
-                ]
-            ],
-            // 'image' => [
-            //     'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
-            //     'errors' => [
-            //         'uploaded' => 'Gambar wajib diunggah',
-            //         'max_size' => 'Ukuran gambar maksimum adalah 1MB',
-            //         'is_image' => 'File harus berupa gambar'
-            //     ]
-            // ],
         ])) {
             $data = [
+                'nama' => $this->request->getPost('nama'),
+                'jk' => $this->request->getPost('jk'),
+                'alamat_rumah' => $this->request->getPost('alamat_rumah'),
+                'pekerjaan' => $this->request->getPost('pekerjaan'),
+                'alamat_kantor' => $this->request->getPost('alamat_kantor'),
+                'email' => $this->request->getPost('email'),
+                'ktp' => $this->request->getPost('ktp'),
+                'tlp' => $this->request->getPost('tlp'),
+                'jenis_id' => $this->request->getPost('jenis_id'),
                 'subjek' => $this->request->getPost('subjek'),
+                'lokasi' => $this->request->getPost('lokasi'),
                 'isian' => $this->request->getPost('isian'),
                 'tanggal_kejadian' => $this->request->getPost('tanggal_kejadian'),
-                'lokasi' => $this->request->getPost('lokasi'),
-                'kategori' => $this->request->getPost('kategori'),
+                'tujuan_pengaduan' => $this->request->getPost('tujuan_pengaduan'),
                 'slug' => url_title($this->request->getPost('subjek'), '-', true)
             ];
 
-            $image = $this->request->getFile('image');
+            // $image = $this->request->getFile('image');
 
-            if ($image->isValid()) {
-                $newName = $image->getRandomName();
-                $image->move('gambar', $newName);
+            // if ($image->isValid()) {
+            //     $newName = $image->getRandomName();
+            //     $image->move('gambar', $newName);
 
-                $data['image'] = $newName;
-            }
+            //     $data['image'] = $newName;
+            // }
 
             $this->aduanModel->insert($data);
 

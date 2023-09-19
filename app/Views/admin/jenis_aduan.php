@@ -1,10 +1,9 @@
 <?php echo $this->extend('admin/komponen/layout') ?>
 <?php echo $this->section('content'); ?>
-<!-- isi -->
 <div class="page-titles">
     <ol class="breadcrumb">
         <li>
-            <h5 class="bc-title">Aduan Masyarakat</h5>
+            <h5 class="bc-title">Jenis Aduan</h5>
         </li>
         <li class="breadcrumb-item"><a href="javascript:void(0)">
                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,11 +12,11 @@
                 </svg>
                 Home </a>
         </li>
-        <li class="breadcrumb-item active"><a href="javascript:void(0)">Aduan Masyarakat</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">Jenis Aduan</a></li>
     </ol>
-    <!-- <a href="</?php echo base_url('/admin/aduan_create') ?>" class="btn btn-primary">
+    <a href="<?php echo base_url('/admin/jenis_create') ?>" class="btn btn-primary">
         <span class="btn-icon-start text-primary"><i class="fa fa-plus color-info"></i>
-        </span>Add Aduan</a> -->
+        </span>Add Jenis Aduan</a>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -43,32 +42,26 @@
                         <!-- alert -->
 
                         <div class="tbl-caption">
-                            <h4 class="heading mb-0">Data Aduan Masyarakat</h4>
+                            <h4 class="heading mb-0">Data Jenis Aduan</h4>
                         </div>
                         <table id="empoloyees-tblwrapper" class="table">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal Kejadian</th>
                                     <th>Jenis Aduan</th>
-                                    <th>Lokasi</th>
-                                    <th>Subjek</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($aduan as $item) : ?>
+                                foreach ($jenis_aduan as $jenis_aduans) : ?>
                                     <tr>
                                         <td><a href="javascript:void(0)"><?= $no++; ?></a></td>
-                                        <td><span><?= $item['tanggal_kejadian'] ?></span></td>
-                                        <td><span><?= substr($item['nama_jenis_aduan'], 0, 30); ?>...</span></span></td>
-                                        <td><span><?= $item['lokasi'] ?></span></td>
-                                        <td><span><?= substr($item['subjek'], 0, 30); ?>...</span></td>
+                                        <td><span><?= $jenis_aduans['nama_aduan'] ?></span></td>
                                         <td>
-                                            <a class="btn btn-warning" href="<?= base_url('/admin/aduan_edit/' . $item['id']) ?>">Lihat Aduan</a>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $item['id'] ?>">Hapus</button>
+                                            <a class="btn btn-warning" href="<?= base_url('/admin/jenis_edit/' . $jenis_aduans['id_jenis']) ?>">Edit</a>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $jenis_aduans['id_jenis'] ?>">Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -80,29 +73,4 @@
         </div>
     </div>
 </div>
-<!-- end -->
-<?php
-foreach ($aduan as $item) {
-?>
-    <div class="modal fade" id="deleteModal<?= $item['id']; ?>">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Konfirmasi Hapus Aduan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus Aduan ini <b> <?= $item['nama_jenis_aduan']; ?></b> ?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form action="/admin/aduan_delete/<?= $item['id']; ?>" method="post">
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
 <?php echo $this->endSection(); ?>
