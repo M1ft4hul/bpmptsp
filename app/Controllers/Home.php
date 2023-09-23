@@ -8,14 +8,17 @@ use App\Models\BerkasModel;
 use App\Models\CategoryModel;
 use App\Models\GalleryModel;
 use App\Models\JenisAduanModel;
+use App\Models\JenisPerizinanModel;
 use App\Models\MenuModel;
 use App\Models\KuesionerModel;
-
+use App\Models\PerizinanKesehatanModel;
 
 class Home extends BaseController
 {
     public function __construct()
     {
+        $this->jenisPerizinanModel = new JenisPerizinanModel();
+        $this->perizinanKesehatanModel = new PerizinanKesehatanModel();
         $this->jenisAduanModel = new JenisAduanModel();
         $this->kuesionerModel = new KuesionerModel();
         $this->berkasModel = new BerkasModel();
@@ -240,6 +243,104 @@ class Home extends BaseController
     public function perizinan()
     {
         return view('perizinan');
+    }
+
+    public function izin($nama_formulir)
+    {
+        $formulirDir = APPPATH . 'Views/perizinan/';
+        $formulirFile = $formulirDir . $nama_formulir;
+
+        if (file_exists($formulirFile)) {
+            return view('perizinan/' . $nama_formulir);
+        } else {
+            return view('perizinan/form_not_found');
+        }
+    }
+
+    public function layanan_kesehatan()
+    {
+        $jenis_perizinan = $this->jenisPerizinanModel->findAll();
+        $grouped_izin = [];
+
+        foreach ($jenis_perizinan as $izin) {
+            $sektor = $izin['nama_sektor'];
+            if (!isset($grouped_izin[$sektor])) {
+                $grouped_izin[$sektor] = [];
+            }
+            $grouped_izin[$sektor][] = $izin;
+        }
+
+        $data = [
+            'izin' => $grouped_izin,
+        ];
+        return view('layanan_kesehatan', $data);
+    }
+
+    public function layanan_kesehatan_store()
+    {
+        if ($this->validate([
+            'jenisizin_id' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Jenis Izin Wajib Diisi',
+                ]
+            ],
+            'alamat_ktp' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Alamat KTP Wajib Diisi',
+                ]
+            ],
+            'alamat_domisili' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Alamat Domisili Wajib Diisi',
+                ]
+            ],
+            'tempat_tgl_lahir' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tempat/Tgl Lahir Wajib Diisi',
+                ]
+            ],
+        ])) {
+            $nama_file = $this->request->getFile('fc_ijazah');
+
+            if ($nama_file->isValid() && $nama_file->getClientMIMEType() == 'application/pdf') {
+                $newName = $nama_file->getName();
+                $uploadPath = ROOTPATH . 'public/perizinan';
+
+                if ($nama_file->move($uploadPath, $newName)) {
+                    $data = [
+                        'fc_ijazah' => $newName,
+                        'jenisizin_id' => $this->request->getPost('jenisizin_id'),
+                        'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+                        'alamat_ktp' => $this->request->getPost('alamat_ktp'),
+                        'alamat_domisili' => $this->request->getPost('alamat_domisili'),
+                        'tempat_tgl_lahir' => $this->request->getPost('tempat_tgl_lahir'),
+                        'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+                        'tahun_lulusan' => $this->request->getPost('tahun_lulusan'),
+                        'nomor_strtgm' => $this->request->getPost('nomor_strtgm'),
+                        'nomor_telepon' => $this->request->getPost('nomor_telepon'),
+                        'email' => $this->request->getPost('email'),
+                        'nama_fasilitas_kefarmasian' => $this->request->getPost('nama_fasilitas_kefarmasian'),
+                        'alamat_praktik' => $this->request->getPost('alamat_praktik'),
+                        'nomor_telepons' => $this->request->getPost('nomor_telepons'),
+                    ];
+                    $this->perizinanKesehatanModel->insert($data);
+
+                    session()->setFlashdata('pesan', 'Nama Perizinan berhasil ditambah');
+                    return redirect()->to(base_url('/home'));
+                } else {
+                    session()->setFlashdata('errors', ['nama_file' => 'Gagal menyimpan berkas di folder sop']);
+                }
+            } else {
+                session()->setFlashdata('errors', ['nama_file' => 'Berkas harus berupa PDF']);
+            }
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/PerizinanKesehatan'))->withInput()->with('errors', $validation->getErrors());
+        }
     }
 
     public function berita()

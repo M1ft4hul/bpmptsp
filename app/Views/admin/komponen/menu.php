@@ -84,6 +84,58 @@
                     <span class="nav-text">Kuesioner</span>
                 </a>
             </li>
+
+            <li>
+                <a href="<?php echo base_url('/admin/jenis_perizinan') ?>" class="" aria-expanded="false">
+                    <div class="menu-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8381 12.7317C16.4566 12.7317 16.9757 13.2422 16.8811 13.853C16.3263 17.4463 13.2502 20.1143 9.54009 20.1143C5.43536 20.1143 2.10834 16.7873 2.10834 12.6835C2.10834 9.30245 4.67693 6.15297 7.56878 5.44087C8.19018 5.28745 8.82702 5.72455 8.82702 6.36429C8.82702 10.6987 8.97272 11.8199 9.79579 12.4297C10.6189 13.0396 11.5867 12.7317 15.8381 12.7317Z" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.8848 9.1223C19.934 6.33756 16.5134 1.84879 12.345 1.92599C12.0208 1.93178 11.7612 2.20195 11.7468 2.5252C11.6416 4.81493 11.7834 7.78204 11.8626 9.12713C11.8867 9.5459 12.2157 9.87493 12.6335 9.89906C14.0162 9.97818 17.0914 10.0862 19.3483 9.74467C19.6552 9.69835 19.88 9.43204 19.8848 9.1223Z" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <span class="nav-text">Jenis Perizinan</span>
+                </a>
+            </li>
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <div class="menu-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.634 13.4211C18.634 16.7009 16.7007 18.6342 13.4209 18.6342H6.28738C2.99929 18.6342 1.06238 16.7009 1.06238 13.4211V6.27109C1.06238 2.99584 2.26688 1.06259 5.54763 1.06259H7.38096C8.03913 1.06351 8.65879 1.37242 9.05296 1.89951L9.88988 3.01234C10.2859 3.53851 10.9055 3.84834 11.5637 3.84926H14.1579C17.446 3.84926 18.6596 5.52309 18.6596 8.86984L18.634 13.4211Z" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5.85754 12.2577H13.8646" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <span class="nav-text">Sektor</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                            <div class="menu-icon">
+                                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.634 13.4211C18.634 16.7009 16.7007 18.6342 13.4209 18.6342H6.28738C2.99929 18.6342 1.06238 16.7009 1.06238 13.4211V6.27109C1.06238 2.99584 2.26688 1.06259 5.54763 1.06259H7.38096C8.03913 1.06351 8.65879 1.37242 9.05296 1.89951L9.88988 3.01234C10.2859 3.53851 10.9055 3.84834 11.5637 3.84926H14.1579C17.446 3.84926 18.6596 5.52309 18.6596 8.86984L18.634 13.4211Z" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.85754 12.2577H13.8646" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span class="nav-text">Kesehatan</span>
+                            </div>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="<?php echo base_url() ?>">Izin Kerja Praktik Trapis Gigi dan Mulut</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Fisiotrapi</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin SIPA</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Dokter Umum dan Gigi</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Kerja Sanitarian Kesehatan Lingkungan</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Kerja Tenaga Gizi</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Perawat, Perawat Gigi</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Praktik Dokter Spesial</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Perawat</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin SIPB</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Praktik Elektro Medik</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Kesehatan Masyarakat</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Teknis Kefarmasian</a></li>
+                            <li><a href="<?php echo base_url() ?>">Izin Dokter SIPD</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <div class="menu-icon">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

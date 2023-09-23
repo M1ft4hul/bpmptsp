@@ -54,6 +54,32 @@
         }
     }
 </script>
+
+<script>
+    const formulirSelect = document.getElementById('formulir');
+    const formulirContainer = document.getElementById('formulir-container');
+
+    formulirSelect.addEventListener('change', () => {
+        const selectedOption = formulirSelect.options[formulirSelect.selectedIndex];
+        const formulirPageUrl = selectedOption.getAttribute('data-url');
+
+        formulirContainer.innerHTML = '';
+
+        if (formulirPageUrl) {
+            const formulirControllerUrl = `/izin/${formulirPageUrl}`;
+            fetch(formulirControllerUrl)
+                .then(response => response.text())
+                .then(data => {
+                    formulirContainer.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Gagal memuat formulir:', error);
+                });
+        }
+    });
+</script>
+
+
 </body>
 
 </html>

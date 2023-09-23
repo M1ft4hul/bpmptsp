@@ -65,6 +65,12 @@ $routes->get('/aduan', 'Home::aduan');
 $routes->get('/aduan/show/(:any)', 'Home::show_aduan/$1');
 $routes->post('/home/aduan/store', 'Home::aduan_simpan');
 
+// berkas perizinan
+$routes->get('izin/(:any)', 'Home::izin/$1');
+
+// layanan
+$routes->get('/PerizinanKesehatan', 'Home::layanan_kesehatan');
+$routes->post('/perizinan/store', 'Home::layanan_kesehatan_store');
 
 // auth
 $routes->get('/login', 'Auth::index');
@@ -167,6 +173,16 @@ $routes->get('/admin/data_sop_create', 'Admin::data_sop_create');
 
 $routes->post('/admin/data_sop/store', 'Admin::data_sop_store');
 
+
+// data layanan
+$routes->get('/admin/jenis_perizinan', 'Admin::layanan_perizinan');
+$routes->get('/admin/perizinan_create', 'Admin::layanan_perizinan_create');
+$routes->get('/admin/perizinan_edit/(:any)', 'Admin::layanan_perizinan_edit/$1');
+
+
+$routes->post('/admin/perizinan/store', 'Admin::layanan_perizinan_store');
+$routes->post('/perizinanUpdate/(:any)', 'Admin::layanan_perizinan_update/$1');
+$routes->post('/admin/perizinan_delete/(:any)', 'Admin::layanan_perizinan_delete/$1');
 
 
 /*

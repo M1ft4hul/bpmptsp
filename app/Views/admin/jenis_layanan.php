@@ -3,7 +3,7 @@
 <div class="page-titles">
     <ol class="breadcrumb">
         <li>
-            <h5 class="bc-title">Jenis Aduan</h5>
+            <h5 class="bc-title">Jenis Layanan Perizinan</h5>
         </li>
         <li class="breadcrumb-item"><a href="javascript:void(0)">
                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,11 +12,11 @@
                 </svg>
                 Home </a>
         </li>
-        <li class="breadcrumb-item active"><a href="javascript:void(0)">Jenis Aduan</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">Jenis Layanan Perizinan</a></li>
     </ol>
-    <a href="<?php echo base_url('/admin/jenis_create') ?>" class="btn btn-primary">
+    <a href="<?php echo base_url('/admin/perizinan_create') ?>" class="btn btn-primary">
         <span class="btn-icon-start text-primary"><i class="fa fa-plus color-info"></i>
-        </span>Add Jenis Aduan</a>
+        </span>Add Jenis Perizinan</a>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -42,25 +42,28 @@
                         <!-- alert -->
 
                         <div class="tbl-caption">
-                            <h4 class="heading mb-0">Data Jenis Aduan</h4>
+                            <h4 class="heading mb-0">Data Jenis Perizinan</h4>
                         </div>
                         <table id="empoloyees-tblwrapper" class="table">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Jenis Aduan</th>
+                                    <th>Nama Sektor</th>
+                                    <th>Nama Perizinan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($jenis_aduan as $jenis_aduans) : ?>
+                                foreach ($perizinan as $j) : ?>
                                     <tr>
                                         <td><a href="javascript:void(0)"><?= $no++; ?></a></td>
-                                        <td><span><?= $jenis_aduans['nama_aduan'] ?></span></td>
+                                        <td><span><?= $j['nama_sektor'] ?></span></td>
+                                        <td><span><?= $j['nama_perizinan'] ?></span></td>
                                         <td>
-                                            <a class="btn btn-warning" href="<?= base_url('/admin/jenis_edit/' . $jenis_aduans['id_jenis']) ?>">Edit</a>
+                                            <a class="btn btn-warning" href="<?= base_url('/admin/perizinan_edit/' . $j['id_perizinan']) ?>">Edit</a>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $j['id_perizinan'] ?>">Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -72,4 +75,29 @@
         </div>
     </div>
 </div>
+
+<?php
+foreach ($perizinan as $j) {
+?>
+    <div class="modal fade" id="deleteModal<?= $j['id_perizinan']; ?>">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Konfirmasi Hapus </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus Jenis Perizinan ini? hapus <b> <?= $j['nama_perizinan']; ?></b> ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <form action="/admin/perizinan_delete/<?= $j['id_perizinan']; ?>" method="post">
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <?php echo $this->endSection(); ?>

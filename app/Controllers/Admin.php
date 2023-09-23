@@ -10,6 +10,7 @@ use App\Models\BeritaModel;
 use App\Models\AduanModel;
 use App\Models\BerkasModel;
 use App\Models\JenisAduanModel;
+use App\Models\JenisPerizinanModel;
 use App\Models\KuesionerModel;
 use App\Models\UserModel;
 
@@ -17,6 +18,7 @@ class Admin extends BaseController
 {
     public function __construct()
     {
+        $this->jenisPerizinanModel = new JenisPerizinanModel();
         $this->jenisAduanModel = new JenisAduanModel();
         $this->berkasModel = new BerkasModel();
         $this->userModel = new UserModel();
@@ -265,8 +267,8 @@ class Admin extends BaseController
     public function aduan_edit($id)
     {
         $aduan = $this->aduanModel->join('jenis_aduan', 'jenis_aduan.id_jenis = aduan.jenis_id')
-        ->select('aduan.*, jenis_aduan.nama_aduan as nama_jenis_aduan')
-        ->find($id);
+            ->select('aduan.*, jenis_aduan.nama_aduan as nama_jenis_aduan')
+            ->find($id);
         $data = [
             'aduan' => $aduan
         ];
@@ -383,7 +385,6 @@ class Admin extends BaseController
         $this->jenisAduanModel->update($id_jenis, $data);
 
         return redirect()->to('/admin/jenis_aduan')->with('pesan', 'Jenis Aduan berhasil diupdate');
-    
     }
 
     // menu berita
@@ -787,5 +788,101 @@ class Admin extends BaseController
             $validation = \Config\Services::validation();
             return redirect()->to(base_url('/admin/data_sop_create'))->withInput()->with('errors', $validation->getErrors());
         }
+    }
+
+    public function layanan_perizinan()
+    {
+        $perizinan = $this->jenisPerizinanModel->findAll();
+        $data = [
+            'perizinan' => $perizinan,
+        ];
+        return view('admin/jenis_layanan', $data);
+    }
+
+    public function layanan_perizinan_create()
+    {
+        $perizinan = $this->jenisPerizinanModel->findAll();
+        $data = [
+            'perizinan' => $perizinan,
+        ];
+        return view('admin/jenis_layanan_create', $data);
+    }
+
+    public function layanan_perizinan_store()
+    {
+        if ($this->validate([
+            'nama_sektor' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Sektor Wajib Diisi',
+                ]
+            ],
+            'nama_perizinan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Perizinan Wajib Diisi',
+                ]
+            ],
+        ])) {
+            $data = [
+                'nama_sektor' => $this->request->getPost('nama_sektor'),
+                'nama_perizinan' => $this->request->getPost('nama_perizinan'),
+            ];
+            $this->jenisPerizinanModel->insert($data);
+            session()->setFlashdata('pesan', 'Nama Perizinan berhasil ditambah');
+            return redirect()->to(base_url('/admin/jenis_perizinan'));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/admin/perizinan_create'))->withInput()->with('errors', $validation->getErrors());
+        }
+    }
+
+    public function layanan_perizinan_edit($id_perizinan)
+    {
+        $perizinan = $this->jenisPerizinanModel->find($id_perizinan);
+        $validation = \Config\Services::validation();
+        $data = [
+            'validation' => $validation,
+            'perizinan' => $perizinan
+        ];
+        return view('admin/jenis_layanan_edit', $data);
+    }
+
+    public function layanan_perizinan_update($id_perizinan)
+    {
+        $rules = [
+            'nama_sektor' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Sektor Wajib Diisi',
+                ]
+            ],
+            'nama_perizinan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Perizinan Wajib Diisi',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $data = [
+            'nama_sektor' => $this->request->getPost('nama_sektor'),
+            'nama_perizinan' => $this->request->getPost('nama_perizinan')
+        ];
+
+        $this->jenisPerizinanModel->update($id_perizinan, $data);
+
+        return redirect()->to('/admin/jenis_perizinan')->with('pesan', 'Nama Perizinan berhasil diupdate');
+    }
+
+
+    public function layanan_perizinan_delete($id_perizinan)
+    {
+        $this->jenisPerizinanModel->delete($id_perizinan);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        return redirect()->to('/admin/jenis_perizinan');
     }
 }
