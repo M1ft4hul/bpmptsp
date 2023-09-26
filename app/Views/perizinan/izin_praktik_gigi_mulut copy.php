@@ -46,7 +46,7 @@
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Tahun Lulusan</label>
             <div class="col-sm-4">
-                <input type="number" name="tahun_lulusan" class="form-control" id="tahunLulus">
+                <input type="text" name="tahun_lulusan" class="form-control" id="tahunLulus">
             </div>
         </div>
         <div class="row mb-3">

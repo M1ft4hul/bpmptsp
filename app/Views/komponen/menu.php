@@ -43,7 +43,7 @@
                             <a href="#" class="nav-link dropdown-toggle">Layanan <i class='bx bx-chevron-down'></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('/perizinan') ?>" class="nav-link">Perizinan Online</a>
+                                    <a href="<?php echo base_url('/home/perizinan') ?>" class="nav-link">Perizinan Online</a>
                                 </li>
                                 <!-- menu yang mau di kerja -->
                                 <li class="nav-item">

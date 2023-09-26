@@ -57,7 +57,7 @@ $routes->post('/proses/add', 'Home::proses_nomor_wa');
 
 $routes->get('/web/sop', 'Home::sop');
 $routes->get('/kontak', 'Home::kontak');
-$routes->get('/perizinan', 'Home::perizinan');
+$routes->get('/home/perizinan', 'Home::perizinan');
 $routes->get('/berita', 'Home::berita');
 $routes->get('/galeri', 'Home::galeri');
 

@@ -58,7 +58,6 @@
                             }
                             ?>
                         </select>
-                        <p style="color: gray;">Formulir, harus sesuai dengan Jenis Prizinan.</p>
                     </div>
                 </div>
                 <div class="row mb-3" id="formulir-container">
