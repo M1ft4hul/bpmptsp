@@ -9,6 +9,7 @@ use App\Models\CategoryModel;
 use App\Models\GalleryModel;
 use App\Models\JenisAduanModel;
 use App\Models\JenisPerizinanModel;
+use App\Models\JenisSektorModel;
 use App\Models\MenuModel;
 use App\Models\KuesionerModel;
 use App\Models\PerizinanKesehatanModel;
@@ -17,6 +18,7 @@ class Home extends BaseController
 {
     public function __construct()
     {
+        $this->jenisSektorModel = new JenisSektorModel();
         $this->jenisPerizinanModel = new JenisPerizinanModel();
         $this->perizinanKesehatanModel = new PerizinanKesehatanModel();
         $this->jenisAduanModel = new JenisAduanModel();
@@ -259,19 +261,19 @@ class Home extends BaseController
 
     public function layanan_kesehatan()
     {
-        $jenis_perizinan = $this->jenisPerizinanModel->findAll();
-        $grouped_izin = [];
+        $jenis_sektor = $this->jenisSektorModel->findAll();
 
-        foreach ($jenis_perizinan as $izin) {
-            $sektor = $izin['nama_sektor'];
-            if (!isset($grouped_izin[$sektor])) {
-                $grouped_izin[$sektor] = [];
-            }
-            $grouped_izin[$sektor][] = $izin;
+        $jenis_perizinan = $this->jenisPerizinanModel->join('jenis_sektor', 'jenis_sektor.id_sektor = jenis_perizinan.sektor_id')
+            ->select('jenis_perizinan.*, jenis_sektor.nama_sektor as nama_sektors')
+            ->findAll();
+
+        foreach ($jenis_perizinan as &$izin) {
+            $izin['nama_formulir'] = str_replace(' ', '_', strtolower($izin['nama_perizinan'])) . '.php';
         }
 
         $data = [
-            'izin' => $grouped_izin,
+            'jenis_perizinan' => $jenis_perizinan,
+            'jenis_sektor' => $jenis_sektor,
         ];
         return view('layanan_kesehatan', $data);
     }
@@ -288,6 +290,7 @@ class Home extends BaseController
                     'required' => 'Jenis Izin Wajib Diisi',
                 ],
             ],
+            'jenis_sektor_id' => 'required',
             'nama_lengkap' => 'required',
             'tempat_tgl_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -298,6 +301,7 @@ class Home extends BaseController
         if ($this->validate($validationRules)) {
             $data = [
                 'jenisizin_id' => $jenisizin_id,
+                'jenis_sektor_id' => $this->request->getPost('jenis_sektor_id'),
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                 'tempat_tgl_lahir' => $this->request->getPost('tempat_tgl_lahir'),
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),

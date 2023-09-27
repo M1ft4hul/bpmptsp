@@ -56,6 +56,29 @@
 </script>
 
 <script>
+    const jenisizinSelect = document.getElementById('jenisizin');
+    const formulirContainer = document.getElementById('formulir-container');
+
+    jenisizinSelect.addEventListener('change', () => {
+        const selectedOption = jenisizinSelect.options[jenisizinSelect.selectedIndex];
+        const formulirPageUrl = selectedOption.getAttribute('data-form');
+
+        formulirContainer.innerHTML = '';
+
+        if (formulirPageUrl) {
+            const formulirControllerUrl = `/izin/${formulirPageUrl}`;
+            fetch(formulirControllerUrl)
+                .then(response => response.text())
+                .then(data => {
+                    formulirContainer.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Gagal memuat formulir:', error);
+                });
+        }
+    });
+</script>
+<!-- <script>
     const formulirSelect = document.getElementById('formulir');
     const formulirContainer = document.getElementById('formulir-container');
 
@@ -77,7 +100,7 @@
                 });
         }
     });
-</script>
+</script> -->
 
 
 </body>

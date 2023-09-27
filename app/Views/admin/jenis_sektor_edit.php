@@ -3,7 +3,7 @@
 <div class="page-titles">
     <ol class="breadcrumb">
         <li>
-            <h5 class="bc-title">Jenis Perizinan</h5>
+            <h5 class="bc-title">Data Sektor</h5>
         </li>
         <li class="breadcrumb-item"><a href="javascript:void(0)">
                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,7 @@
                 </svg>
                 Home </a>
         </li>
-        <li class="breadcrumb-item active"><a href="javascript:void(0)">Jenis Perizinan</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Sektor</a></li>
     </ol>
 </div>
 <div class="container-fluid">
@@ -20,41 +20,29 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Edit Jenis Perizinan</h4>
+                    <h4 class="card-title">Edit Sektor</h4>
 
                 </div>
 
                 <div class="card-body">
 
                     <div class="basic-form">
-                        <form method="POST" action="/perizinanUpdate/<?= $perizinan['id_perizinan']; ?>" class="form-valide-with-icon needs-validation" novalidate>
+                        <form method="POST" action="/sektorUpdate/<?= $sektor['id_sektor']; ?>" class="form-valide-with-icon needs-validation" novalidate>
                             <div class="mb-3 row">
                                 <label class="col-lg-3 col-form-label" for="validationCustom01">Nama Sektor
                                     <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <select name="sektor_id" id="sektor_id" class="default-select form-control wide">
-                                        <?php foreach ($sektor as $s) : ?>
-                                            <option value="<?= $s['id_sektor']; ?>"><?= $s['nama_sektor']; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-lg-3 col-form-label" for="validationCustom01">Nama Perizinan
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="text" value="<?= (old('nama_perizinan')) ? old('nama_perizinan') : $perizinan['nama_perizinan'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('nama_perizinan')) ? 'is-invalid'  : ''; ?>" name="nama_perizinan" id="validationCustom01" placeholder="Masukkan Nama Perizinan">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('nama_perizinan', session()->getFlashdata('errors'))) : ?>
+                                    <input type="text" value="<?= (old('nama_sektor')) ? old('nama_sektor') : $sektor['nama_sektor'] ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('nama_sektor')) ? 'is-invalid'  : ''; ?>" name="nama_sektor" id="validationCustom01" placeholder="Masukkan Nama Sektor">
+                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('nama_sektor', session()->getFlashdata('errors'))) : ?>
                                         <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['nama_perizinan']; ?>
+                                            <?= session()->getFlashdata('errors')['nama_sektor']; ?>
                                         </p>
                                     <?php endif; ?>
                                 </div>
                             </div>
                             <button type="submit" class="btn me-2 btn-primary">Simpan</button>
-                            <a href="<?php echo base_url('/admin/jenis_perizinan') ?>" class="btn btn-danger light">Kembali</a>
+                            <a href="<?php echo base_url('/admin/jenis_sektor') ?>" class="btn btn-danger light">Kembali</a>
                         </form>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 <div class="page-titles">
     <ol class="breadcrumb">
         <li>
-            <h5 class="bc-title">Jenis Layanan Perizinan</h5>
+            <h5 class="bc-title">Data Sektor</h5>
         </li>
         <li class="breadcrumb-item"><a href="javascript:void(0)">
                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,11 +12,11 @@
                 </svg>
                 Home </a>
         </li>
-        <li class="breadcrumb-item active"><a href="javascript:void(0)">Jenis Layanan Perizinan</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Sektor</a></li>
     </ol>
-    <a href="<?php echo base_url('/admin/perizinan_create') ?>" class="btn btn-primary">
+    <a href="<?php echo base_url('/admin/sektor_create') ?>" class="btn btn-primary">
         <span class="btn-icon-start text-primary"><i class="fa fa-plus color-info"></i>
-        </span>Add Jenis Perizinan</a>
+        </span>Add Data Sektor</a>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -42,28 +42,26 @@
                         <!-- alert -->
 
                         <div class="tbl-caption">
-                            <h4 class="heading mb-0">Data Jenis Perizinan</h4>
+                            <h4 class="heading mb-0">Data Sektor</h4>
                         </div>
                         <table id="empoloyees-tblwrapper" class="table">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Sektor</th>
-                                    <th>Nama Perizinan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($perizinan as $j) : ?>
+                                foreach ($sektor as $sektors) : ?>
                                     <tr>
                                         <td><a href="javascript:void(0)"><?= $no++; ?></a></td>
-                                        <td><span><?= $j['nama_sektors'] ?></span></td>
-                                        <td><span><?= $j['nama_perizinan'] ?></span></td>
+                                        <td><span><?= $sektors['nama_sektor'] ?></span></td>
                                         <td>
-                                            <a class="btn btn-warning" href="<?= base_url('/admin/perizinan_edit/' . $j['id_perizinan']) ?>">Edit</a>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $j['id_perizinan'] ?>">Hapus</button>
+                                            <a class="btn btn-warning" href="<?= base_url('/admin/sektor_edit/' . $sektors['id_sektor']) ?>">Edit</a>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $sektors['id_sektor'] ?>">Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -77,9 +75,9 @@
 </div>
 
 <?php
-foreach ($perizinan as $j) {
+foreach ($sektor as $sektors) {
 ?>
-    <div class="modal fade" id="deleteModal<?= $j['id_perizinan']; ?>">
+    <div class="modal fade" id="deleteModal<?= $sektors['id_sektor']; ?>">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -88,11 +86,11 @@ foreach ($perizinan as $j) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus Jenis Perizinan ini? hapus <b> <?= $j['nama_perizinan']; ?></b> ?</p>
+                    <p>Apakah Anda yakin ingin menghapus Data Sektor ini? hapus <b> <?= $sektors['nama_sektor']; ?></b> ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form action="/admin/perizinan_delete/<?= $j['id_perizinan']; ?>" method="post">
+                    <form action="/admin/sektor_delete/<?= $sektors['id_sektor']; ?>" method="post">
                         <button type="submit" class="btn btn-danger">Hapus</button>
                     </form>
                 </div>

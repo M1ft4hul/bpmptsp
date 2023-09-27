@@ -11,6 +11,7 @@ use App\Models\AduanModel;
 use App\Models\BerkasModel;
 use App\Models\JenisAduanModel;
 use App\Models\JenisPerizinanModel;
+use App\Models\JenisSektorModel;
 use App\Models\KuesionerModel;
 use App\Models\UserModel;
 
@@ -18,6 +19,7 @@ class Admin extends BaseController
 {
     public function __construct()
     {
+        $this->jenisSektorModel = new JenisSektorModel();
         $this->jenisPerizinanModel = new JenisPerizinanModel();
         $this->jenisAduanModel = new JenisAduanModel();
         $this->berkasModel = new BerkasModel();
@@ -792,7 +794,9 @@ class Admin extends BaseController
 
     public function layanan_perizinan()
     {
-        $perizinan = $this->jenisPerizinanModel->findAll();
+        $perizinan = $this->jenisPerizinanModel->join('jenis_sektor', 'jenis_sektor.id_sektor = jenis_perizinan.sektor_id')
+            ->select('jenis_perizinan.*, jenis_sektor.nama_sektor as nama_sektors')
+            ->findAll();
         $data = [
             'perizinan' => $perizinan,
         ];
@@ -802,8 +806,10 @@ class Admin extends BaseController
     public function layanan_perizinan_create()
     {
         $perizinan = $this->jenisPerizinanModel->findAll();
+        $sektor = $this->jenisSektorModel->findAll();
         $data = [
             'perizinan' => $perizinan,
+            'sektor' => $sektor,
         ];
         return view('admin/jenis_layanan_create', $data);
     }
@@ -811,12 +817,7 @@ class Admin extends BaseController
     public function layanan_perizinan_store()
     {
         if ($this->validate([
-            'nama_sektor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Sektor Wajib Diisi',
-                ]
-            ],
+
             'nama_perizinan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -824,8 +825,11 @@ class Admin extends BaseController
                 ]
             ],
         ])) {
+            $maxLevel = $this->jenisPerizinanModel->selectMax('level')->first();
+            $newLevel = $maxLevel['level'] + 1;
             $data = [
-                'nama_sektor' => $this->request->getPost('nama_sektor'),
+                'level' => $newLevel,
+                'sektor_id' => $this->request->getPost('sektor_id'),
                 'nama_perizinan' => $this->request->getPost('nama_perizinan'),
             ];
             $this->jenisPerizinanModel->insert($data);
@@ -840,10 +844,12 @@ class Admin extends BaseController
     public function layanan_perizinan_edit($id_perizinan)
     {
         $perizinan = $this->jenisPerizinanModel->find($id_perizinan);
+        $sektor = $this->jenisSektorModel->findAll();
         $validation = \Config\Services::validation();
         $data = [
             'validation' => $validation,
-            'perizinan' => $perizinan
+            'perizinan' => $perizinan,
+            'sektor' => $sektor,
         ];
         return view('admin/jenis_layanan_edit', $data);
     }
@@ -851,12 +857,7 @@ class Admin extends BaseController
     public function layanan_perizinan_update($id_perizinan)
     {
         $rules = [
-            'nama_sektor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Sektor Wajib Diisi',
-                ]
-            ],
+
             'nama_perizinan' => [
                 'rules' => 'required',
                 'errors' => [
@@ -869,7 +870,7 @@ class Admin extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         $data = [
-            'nama_sektor' => $this->request->getPost('nama_sektor'),
+            'sektor_id' => $this->request->getPost('sektor_id'),
             'nama_perizinan' => $this->request->getPost('nama_perizinan')
         ];
 
@@ -884,5 +885,89 @@ class Admin extends BaseController
         $this->jenisPerizinanModel->delete($id_perizinan);
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
         return redirect()->to('/admin/jenis_perizinan');
+    }
+
+    public function layanan_sektor()
+    {
+        $sektor = $this->jenisSektorModel->findAll();
+        $data = [
+            'sektor' => $sektor,
+        ];
+        return view('admin/jenis_sektor', $data);
+    }
+
+    public function layanan_sektor_create()
+    {
+        $sektor = $this->jenisSektorModel->findAll();
+        $data = [
+            'sektor' => $sektor,
+        ];
+        return view('admin/jenis_sektor_create', $data);
+    }
+
+    public function layanan_sektor_store()
+    {
+        if ($this->validate([
+            'nama_sektor' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Sektor Wajib Diisi',
+                ]
+            ],
+        ])) {
+            $maxLevel = $this->jenisSektorModel->selectMax('level')->first();
+            $newLevel = $maxLevel['level'] + 1;
+            $data = [
+                'level' => $newLevel,
+                'nama_sektor' => $this->request->getPost('nama_sektor'),
+            ];
+            $this->jenisSektorModel->insert($data);
+            session()->setFlashdata('pesan', 'Data Sektor berhasil ditambah');
+            return redirect()->to(base_url('/admin/jenis_sektor'));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to(base_url('/admin/sektor_create'))->withInput()->with('errors', $validation->getErrors());
+        }
+    }
+
+    public function layanan_sektor_edit($id_sektor)
+    {
+        $sektor = $this->jenisSektorModel->find($id_sektor);
+        $validation = \Config\Services::validation();
+        $data = [
+            'validation' => $validation,
+            'sektor' => $sektor,
+        ];
+        return view('admin/jenis_sektor_edit', $data);
+    }
+
+    public function layanan_sektor_update($id_sektor)
+    {
+        $rules = [
+            'nama_sektor' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Sektor Wajib Diisi',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $data = [
+            'nama_sektor' => $this->request->getPost('nama_sektor')
+        ];
+
+        $this->jenisSektorModel->update($id_sektor, $data);
+
+        return redirect()->to('/admin/jenis_sektor')->with('pesan', 'Data Sektor berhasil diupdate');
+    }
+
+    public function layanan_sektor_delete($id_sektor)
+    {
+        $this->jenisSektorModel->delete($id_sektor);
+        session()->setFlashdata('pesan', 'Data Sektor berhasil dihapus');
+        return redirect()->to('/admin/jenis_sektor');
     }
 }

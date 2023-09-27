@@ -27,40 +27,33 @@
         <div class="row">
             <form action="<?php echo base_url('/perizinan/store') ?>" method="post" enctype="multipart/form-data">
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Jenis Perizinan</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Jenis Sektor</label>
                     <div class="col-sm-4">
-                        <select name="jenisizin_id" class="form-select" aria-label="Default select example" id="jenisizin">
-                            <option selected disabled>Pilih Jenis Perizinan</option>
-
-                            <?php foreach ($izin as $sektor => $perizinan) : ?>
-                                <optgroup label="<?= $sektor; ?>">
-                                    <?php foreach ($perizinan as $a) : ?>
-                                        <option value="<?= $a['id_perizinan']; ?>"><?= $a['nama_perizinan']; ?></option>
-                                    <?php endforeach; ?>
-                                </optgroup>
+                        <select name="jenis_sektor_id" class="form-select" aria-label="Default select example" id="jenisektor">
+                            <option selected disabled>Pilih Sektor</option>
+                            <?php foreach ($jenis_sektor as $sektor) : ?>
+                                <?php if ($sektor['level'] == 1) : ?>
+                                    <option value="<?= $sektor['level']; ?>"><?= $sektor['nama_sektor']; ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Formulir Perizinan</label>
-                    <div class="col-sm-4">
-                        <select class="form-select" aria-label="Default select example" id="formulir">
-                            <option selected disabled>Pilih Jenis Formulir Perizinan</option>
-                            <?php
-                            $daftarFormulir = [
-                                'izin_praktik_gigi_mulut.php' => 'Izin Praktik Trapis Gigi dan Mulut',
-                                'izin_fisiotrapi.php' => 'Izin Fisiotrapi',
-                            ];
 
-                            foreach ($daftarFormulir as $filename => $formulirName) {
-                                echo "<option value='{$filename}' data-url='{$filename}'>{$formulirName}</option>";
-                            }
-                            ?>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Formulir Perizinan</label>
+                    <div class="col-sm-4">
+                        <select name="jenisizin_id" class="form-select" aria-label="Default select example" id="jenisizin">
+                            <option selected disabled>Pilih Jenis Perizinan</option>
+                            <?php foreach ($jenis_perizinan as $a) : ?>
+                                <option value="<?= $a['level']; ?>" data-form="<?= $a['nama_formulir']; ?>">
+                                    <?= $a['nama_perizinan']; ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
-                        <p style="color: gray;">Formulir, harus sesuai dengan Jenis Prizinan.</p>
                     </div>
                 </div>
+
                 <div class="row mb-3" id="formulir-container">
                     <!-- formulir yang ditampilkan di sini. -->
                 </div>

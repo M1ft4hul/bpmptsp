@@ -8,5 +8,5 @@ class JenisPerizinanModel extends Model
 {
     protected $table = 'jenis_perizinan';
     protected $primaryKey = 'id_perizinan';
-    protected $allowedFields = ['nama_sektor', 'nama_perizinan'];
+    protected $allowedFields = ['sektor_id', 'nama_perizinan', 'level'];
 }

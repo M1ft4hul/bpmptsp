@@ -33,12 +33,11 @@
                                     <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" value="<?= old('nama_sektor') ?>" class="form-control <?= (service('request')->getMethod(true) == 'POST' && service('validation')->hasError('nama_sektor')) ? 'is-invalid'  : ''; ?>" name="nama_sektor" id="validationCustom01" placeholder="Masukkan Layanan Sektor">
-                                    <?php if (session()->getFlashdata('errors') !== null && array_key_exists('nama_sektor', session()->getFlashdata('errors'))) : ?>
-                                        <p class="text-danger">
-                                            <?= session()->getFlashdata('errors')['nama_sektor']; ?>
-                                        </p>
-                                    <?php endif; ?>
+                                    <select name="sektor_id" id="sektor_id" class="default-select form-control wide">
+                                        <?php foreach ($sektor as $s) : ?>
+                                            <option value="<?= $s['id_sektor']; ?>"><?= $s['nama_sektor']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">

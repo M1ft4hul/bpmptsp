@@ -174,7 +174,7 @@ $routes->get('/admin/data_sop_create', 'Admin::data_sop_create');
 $routes->post('/admin/data_sop/store', 'Admin::data_sop_store');
 
 
-// data layanan
+// data perizinan
 $routes->get('/admin/jenis_perizinan', 'Admin::layanan_perizinan');
 $routes->get('/admin/perizinan_create', 'Admin::layanan_perizinan_create');
 $routes->get('/admin/perizinan_edit/(:any)', 'Admin::layanan_perizinan_edit/$1');
@@ -183,6 +183,16 @@ $routes->get('/admin/perizinan_edit/(:any)', 'Admin::layanan_perizinan_edit/$1')
 $routes->post('/admin/perizinan/store', 'Admin::layanan_perizinan_store');
 $routes->post('/perizinanUpdate/(:any)', 'Admin::layanan_perizinan_update/$1');
 $routes->post('/admin/perizinan_delete/(:any)', 'Admin::layanan_perizinan_delete/$1');
+
+// data sektor
+$routes->get('/admin/jenis_sektor', 'Admin::layanan_sektor');
+$routes->get('/admin/sektor_create', 'Admin::layanan_sektor_create');
+$routes->get('/admin/sektor_edit/(:any)', 'Admin::layanan_sektor_edit/$1');
+
+$routes->post('/admin/sektor/store', 'Admin::layanan_sektor_store');
+$routes->post('/sektorUpdate/(:any)', 'Admin::layanan_sektor_update/$1');
+$routes->post('/admin/sektor_delete/(:any)', 'Admin::layanan_sektor_delete/$1');
+
 
 
 /*
